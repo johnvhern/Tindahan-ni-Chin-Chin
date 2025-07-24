@@ -1,0 +1,99 @@
+# -----------------------------
+# Build Folders & VS Artifacts
+# -----------------------------
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+.vscode/
+_ReSharper*/
+*.ncb
+*.log
+*.cache
+*.pdb
+
+# -----------------------------
+# NuGet
+# -----------------------------
+packages/
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+*.nuget.props
+*.nuget.targets
+
+# -----------------------------
+# Syncfusion Specific
+# -----------------------------
+
+# Ignore license keys
+SyncfusionLicense.txt
+syncfusion_license.txt
+syncfusion_license.key
+syncfusion_*.lic
+*.licx
+*.lic
+
+# Ignore embedded Syncfusion DLLs (use NuGet instead)
+# Note: This assumes you don't manually copy Syncfusion DLLs into the project
+Syncfusion.*.dll
+Syncfusion.*.xml
+
+# If you manually added Syncfusion assemblies under a folder, ignore it
+/SyncfusionAssemblies/
+
+# -----------------------------
+# PDF/Media/Generated Output
+# -----------------------------
+*.pdf
+*.docx
+*.xlsx
+*.jpg
+*.jpeg
+*.png
+*.bmp
+*.gif
+*.svg
+Media/
+output/
+ExportedFiles/
+
+# -----------------------------
+# Environment / IDE
+# -----------------------------
+.env
+.env.local
+*.bak
+*.tmp
+*.temp
+*.db
+
+# -----------------------------
+# OS Specific
+# -----------------------------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# -----------------------------
+# Optional - Ignore JetBrains Rider
+# -----------------------------
+.idea/
+*.DotSettings.user
+
+# -----------------------------
+# Logs
+# -----------------------------
+*.log
+
+# -----------------------------
+# Unit Test Results
+# -----------------------------
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
