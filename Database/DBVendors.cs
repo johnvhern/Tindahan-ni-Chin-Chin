@@ -10,19 +10,23 @@ namespace Tindahan_ni_Chin_Chin.Database
 {
     internal class DBVendors
     {
-        public static DataTable GetVendorList()
+        public static Task<DataTable> GetVendorListAsync()
         {
-            using (var conn = DatabaseCreation.GetConnection())
+            return Task.Run(() =>
             {
-                string query = "SELECT vendor_id AS '#', vendor_name AS 'Name', vendor_contact_number AS 'Contact Number' FROM vendor";
-                using (var cmd = new SQLiteCommand(query, conn))
-                using (var adapter = new SQLiteDataAdapter(cmd))
+                using (var conn = DatabaseCreation.GetConnection())
                 {
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    return dt;
+                    string query = "SELECT vendor_id AS '#', vendor_name AS 'Name', vendor_contact_number AS 'Contact Number' FROM vendor";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    using (var adapter = new SQLiteDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt); // Still synchronous
+                        return dt;
+                    }
                 }
-            }
+            });
         }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Syncfusion.Compression.Zip;
 using Syncfusion.Pdf.Interactive;
 using Syncfusion.Windows.Forms;
+using Syncfusion.Windows.Forms.Tools;
 using Syncfusion.WinForms.DataGrid.Enums;
 using System;
 using System.Collections.Generic;
@@ -14,61 +15,76 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using Tindahan_ni_Chin_Chin.Database;
 
 namespace Tindahan_ni_Chin_Chin.Controls
 {
     public partial class Inventory : UserControl
     {
         Paginator paginator = new Paginator();
+        TabControlAdv tabControl = new TabControlAdv(); // TabControlAdv to hold the tabs
         private DataTable vendorTable, categoryTable; // DataTable to hold data
         public Inventory()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
 
         private void Inventory_Load(object sender, EventArgs e)
         {
-            cbVendorEntries.SelectedIndex = 0; // Set the default selected index of the vendor combo box to the first entry
-            cbCategoryEntries.SelectedIndex = 0; // Set the default selected index of the category combo box to the first entry
-            LoadVendorList(); // Load the vendor list into the DataTable
-            LoadCategory(); // Load the category list into the DataGridView 
+ 
         }
 
         // REUSABLE METHODS
-
-        private ComboBox rowLimit(ComboBox comboBox)
+        private void tabControlAdv1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable dataTable = vendorTable ?? categoryTable;
+            switch (this.tabControlAdv1.SelectedTab.Name)
+            {
+                case "tabVendor":
+                    cbVendorEntries.SelectedIndex = 0; // Reset to the first entry limit when switching to Vendor tab
+                    LoadVendorList(); // Load the vendor list when the Vendor tab is selected
+                    break;
+                case "tabCategory":
+                    cbCategoryEntries.SelectedIndex = 0; // Reset to the first entry limit when switching to Category tab
+                    LoadCategory(); // Load the category list when the Category tab is selected
+                    break;
+            }
+        }
+
+        private void ApplyRowLimit(ComboBox comboBox, DataTable sourceTable, DataGridView targetGrid, Label infoLabel)
+        {
             try
             {
-                if (dataTable != null)
+                if (sourceTable != null)
                 {
-                    string selected = comboBox.SelectedItem?.ToString() ?? "1"; // Get the selected value or default to "10"
-                    DataTable paged = paginator.ApplyRowLimit(dataTable, selected);
+                    string selected = comboBox.SelectedItem.ToString();
+                    DataTable paged = paginator.ApplyRowLimit(sourceTable, selected);
 
-                    var (start, end) = paginator.GetDisplayRange(vendorTable.Rows.Count);
-                    lblPageInfo.Text = $"Showing {start} to {end} of {vendorTable.Rows.Count} entries";
+                    var (start, end) = paginator.GetDisplayRange(sourceTable.Rows.Count);
 
-                    dgvVendor.DataSource = paged;
-                }
-                else
-                {
-                    return null;
+                    infoLabel.Text = $"Showing {start} to {end} of {sourceTable.Rows.Count} entries";
+                    targetGrid.DataSource = paged;
                 }
             }
             catch (Exception ex)
             {
                 MessageBoxAdv.Show(this, "An error occurred while setting the row limit: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            return comboBox;
         }
+
 
         public class Paginator
         {
             private int _pageSize = 10;
             private int _currentPage = 1;
             private int _totalPages = 1;
+
+            public void SetPageSize(int newSize, int totalRows)
+            {
+                _pageSize = newSize;
+                _currentPage = 1;
+                CalculateTotalPages(totalRows);
+            }
+
 
             public (int Start, int End) GetDisplayRange(int totalRows)
             {
@@ -91,9 +107,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
                 if (int.TryParse(selectedValue, out int newSize))
                 {
-                    _pageSize = newSize;
-                    _currentPage = 1;
-                    CalculateTotalPages(sourceTable.Rows.Count);
+                    SetPageSize(newSize, sourceTable.Rows.Count);
                     return GetPage(sourceTable, _currentPage);
                     
                 }
@@ -133,24 +147,6 @@ namespace Tindahan_ni_Chin_Chin.Controls
             
         }
 
-        public DataGridView gridviewStyle(DataGridView view)
-        {
-            // Set overall mode to None so per-column settings apply
-            view.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-
-            // Auto-size some columns to fit their content
-            view.Columns["#"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            view.Columns["Contact Number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            // Set one column to fill the remaining space
-            view.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            view.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11F, FontStyle.Bold); // Set header font style
-            view.DefaultCellStyle.Font = new Font("Segoe UI", 11F, FontStyle.Regular); // Set header font style
-
-            return view;
-        }
-
         // CATEGORY MANAGEMENT METHODS
 
         private void btnAddCategory_Click(object sender, EventArgs e)
@@ -169,12 +165,103 @@ namespace Tindahan_ni_Chin_Chin.Controls
             addCategoryForm.ShowDialog(); // Show the AddCategory form as a dialog
         }
 
+        private void btnRefreshCategory_Click(object sender, EventArgs e)
+        {
+            categoryTable = Database.DBCategory.getCategoryList(); // Returns a DataTable
+            dgvCategory.DataSource = categoryTable; // Refresh the category list in the DataGridView
+            ApplyRowLimit(cbCategoryEntries, categoryTable, dgvCategory, lblCategoryPageInfo); // Reset the row limit based on the selected value in the combo box
+        }
+
         private void LoadCategory()
         {
             categoryTable = Database.DBCategory.getCategoryList(); // Returns a DataTable
-            dgvCategory.DataSource = Database.DBCategory.getCategoryList(); // Reload the category list into the DataGridView
-            rowLimit(cbCategoryEntries); // Reset the row limit based on the selected value in the combo box
+            dgvCategory.DataSource = categoryTable;
+
+            string selected = cbCategoryEntries.SelectedItem?.ToString() ?? "10"; // Get the selected value from the combo box or default to "10"
+
+            if (int.TryParse(selected, out int rowLimit))
+            {
+                paginator.SetPageSize(rowLimit, categoryTable.Rows.Count); // Set the page size based on the selected value
+            }
+
+            var page = paginator.GetPage(categoryTable, 1); // Get the initial page of data
+            dgvCategory.DataSource = page; // Set the DataGridView's data source to the paginated data
+
+            var (start, end) = paginator.GetDisplayRange(categoryTable.Rows.Count); // Get the display range for the current page
+            lblCurrentCategoryPage.Text = paginator.CurrentPage.ToString(); // Update the current page label
+            lblCategoryPageInfo.Text = $"Showing {start} to {end} of {categoryTable.Rows.Count} entries"; // Update the label with the display range information
+            
         }
+
+        private void txtSearchCategory_TextChanged(object sender, EventArgs e)
+        {
+            string filterText = txtSearchCategory.Text.Trim().Replace("'", "''"); // Prevent SQL injection-like issues
+
+            if (categoryTable != null)
+            {
+                if (string.IsNullOrEmpty(filterText))
+                {
+                    dgvCategory.DataSource = categoryTable;
+                    ApplyRowLimit(cbCategoryEntries, categoryTable, dgvCategory, lblCategoryPageInfo); // Reset to the full category list when the search box is empty
+                }
+                else
+                {
+                    DataView dv = categoryTable.DefaultView;
+                    dv.RowFilter = $"[Name] LIKE '%{filterText}%'";
+                    dgvCategory.DataSource = dv;
+                }
+            }
+        }
+
+        private void cbCategoryEntries_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplyRowLimit(cbCategoryEntries, categoryTable, dgvCategory, lblCategoryPageInfo); // Apply the row limit based on the selected value in the combo box
+        }
+
+        private void btnCategoryPrev_Click(object sender, EventArgs e)
+        {
+            int next = paginator.CurrentPage - 1;
+            DataTable nextPage = paginator.GetPage(categoryTable, next);
+            dgvCategory.DataSource = nextPage;
+
+            var (start, end) = paginator.GetDisplayRange(categoryTable.Rows.Count);
+            lblCurrentCategoryPage.Text = paginator.CurrentPage.ToString(); // Update the current page label
+            lblCategoryPageInfo.Text = $"Showing {start} to {end} of {categoryTable.Rows.Count} entries";
+
+
+        }
+
+        private void btnCategoryNext_Click(object sender, EventArgs e)
+        {
+            int next = paginator.CurrentPage + 1;
+            DataTable nextPage = paginator.GetPage(categoryTable, next);
+            dgvCategory.DataSource = nextPage;
+
+            var (start, end) = paginator.GetDisplayRange(categoryTable.Rows.Count);
+            lblCurrentCategoryPage.Text = paginator.CurrentPage.ToString(); // Update the current page label
+            lblCategoryPageInfo.Text = $"Showing {start} to {end} of {categoryTable.Rows.Count} entries";
+        }
+
+        private void dgvCategory_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            dgvCategory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+
+            // Auto-size some columns to fit their content
+            dgvCategory.Columns["#"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            // Set one column to fill the remaining space
+            dgvCategory.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            dgvCategory.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11F, FontStyle.Bold); // Set header font style
+            dgvCategory.DefaultCellStyle.Font = new Font("Segoe UI", 11F, FontStyle.Regular); // Set header font style
+        }
+
+
+
+
+
+
+
 
         // VENDOR MANAGEMENT METHODS
 
@@ -182,9 +269,9 @@ namespace Tindahan_ni_Chin_Chin.Controls
         {
             var addVendorControl = new Controls.AddVendor();
 
-            addVendorControl.OnVendorAdded += () => // Subscribe to the OnVendorAdded event
+            addVendorControl.OnVendorAdded += async () => // Subscribe to the OnVendorAdded event
             {
-                LoadVendorList(); // Call the ReloadVendors method to refresh the vendor list
+                await LoadVendorList(); // Call the LoadVendorList method to refresh the vendor list
             };
 
 
@@ -195,34 +282,56 @@ namespace Tindahan_ni_Chin_Chin.Controls
             addVendorForm.ShowDialog();
         }
 
-        private void btnVendorRefresh_Click(object sender, EventArgs e)
+        private async void btnVendorRefresh_Click(object sender, EventArgs e)
         {
-            vendorTable = Database.DBVendors.GetVendorList(); // Returns a DataTable
-            dgvVendor.DataSource = Database.DBVendors.GetVendorList(); // Refresh the vendor list in the DataGridView
-            rowLimit(cbVendorEntries); // Reset the row limit based on the selected value in the combo box
+            vendorTable = await Database.DBVendors.GetVendorListAsync(); // Returns a DataTable
+            dgvVendor.DataSource = vendorTable; // Refresh the vendor list in the DataGridView
+            ApplyRowLimit(cbVendorEntries, vendorTable, dgvVendor, lblPageInfo); // Reset the row limit based on the selected value in the combo box
         }
 
         private void btnVendorPrev_Click(object sender, EventArgs e)
         {
-            int next = paginator.CurrentPage - 1;
-            DataTable nextPage = paginator.GetPage(vendorTable, next);
-            dgvVendor.DataSource = nextPage;
+            var prevPage = paginator.GetPage(vendorTable, paginator.CurrentPage - 1);
+            dgvVendor.DataSource = prevPage;
+
+            var (start, end) = paginator.GetDisplayRange(vendorTable.Rows.Count);
             lblVendorCurrentPage.Text = paginator.CurrentPage.ToString(); // Update the current page label
+            lblPageInfo.Text = $"Showing {start} to {end} of {vendorTable.Rows.Count} entries";
+
+
         }
 
         private void btnVendorNext_Click(object sender, EventArgs e)
         {
-            int next = paginator.CurrentPage + 1;
-            DataTable nextPage = paginator.GetPage(vendorTable, next);
-            dgvVendor.DataSource = nextPage;
-            lblVendorCurrentPage.Text = paginator.CurrentPage.ToString(); // Update the current page label
+            if (paginator.CurrentPage < paginator.TotalPages)
+            {
+                var nextPage = paginator.GetPage(vendorTable, paginator.CurrentPage + 1);
+                var (start, end) = paginator.GetDisplayRange(vendorTable.Rows.Count);
+                dgvVendor.DataSource = nextPage; // Set the DataGridView's data source to the next page of data
+
+                lblVendorCurrentPage.Text = paginator.CurrentPage.ToString(); // Update the current page label
+                lblPageInfo.Text = $"Showing {start} to {end} of {vendorTable.Rows.Count} entries";
+            }
         }
 
-        public void LoadVendorList()
+        public async Task LoadVendorList()
         {
-            vendorTable = Database.DBVendors.GetVendorList(); // Returns a DataTable
+            vendorTable = await Database.DBVendors.GetVendorListAsync(); // Returns a DataTable
             dgvVendor.DataSource = vendorTable; // Set the DataGridView's data source to the vendor table
-            rowLimit(cbVendorEntries); // Apply the row limit based on the selected value in the combo box
+            
+            string selected = cbVendorEntries.SelectedItem?.ToString() ?? "10"; // Get the selected value from the combo box or default to "10"
+
+            if (int.TryParse(selected, out int rowLimit))
+            {
+                paginator.SetPageSize(rowLimit, vendorTable.Rows.Count); // Set the page size based on the selected value
+            }
+           
+            var page = paginator.GetPage(vendorTable, 1); // Get the initial page of data
+            dgvVendor.DataSource = page; // Set the DataGridView's data source to the paginated data
+
+            var (start, end) = paginator.GetDisplayRange(vendorTable.Rows.Count); // Get the display range for the current page
+            lblVendorCurrentPage.Text = paginator.CurrentPage.ToString(); // Update the current page label
+            lblPageInfo.Text = $"Showing {start} to {end} of {vendorTable.Rows.Count} entries"; // Update the label with the display range information
         }
 
         private void txtSearchVendor_TextChanged(object sender, EventArgs e)
@@ -234,7 +343,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
                 if (string.IsNullOrEmpty(filterText))
                 {
                     dgvVendor.DataSource = vendorTable;
-                    rowLimit(cbVendorEntries); // Reset to the full vendor list when the search box is empty
+                    ApplyRowLimit(cbVendorEntries, vendorTable, dgvVendor, lblPageInfo); // Reset to the full vendor list when the search box is empty
                 }
                 else
                 {
@@ -247,12 +356,23 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
         private void cbVendorEntries_SelectedIndexChanged(object sender, EventArgs e)
         {
-            rowLimit(cbVendorEntries); // Apply the row limit based on the selected value in the combo box
+            ApplyRowLimit(cbVendorEntries, vendorTable, dgvVendor, lblPageInfo); // Apply the row limit based on the selected value in the combo box
         }
 
         private void dgvVendor_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            gridviewStyle(dgvVendor); // Apply the grid view style to the DataGridView
+            // Set overall mode to None so per-column settings apply
+            dgvVendor.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+
+            // Auto-size some columns to fit their content
+            dgvVendor.Columns["#"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvVendor.Columns["Contact Number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            // Set one column to fill the remaining space
+            dgvVendor.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            dgvVendor.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11F, FontStyle.Bold); // Set header font style
+            dgvVendor.DefaultCellStyle.Font = new Font("Segoe UI", 11F, FontStyle.Regular); // Set header font style
         }
     }
 }
