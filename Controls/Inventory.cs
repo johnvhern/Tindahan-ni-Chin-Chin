@@ -2,6 +2,7 @@
 using Syncfusion.Pdf.Interactive;
 using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Tools;
+using Syncfusion.WinForms.DataGrid;
 using Syncfusion.WinForms.DataGrid.Enums;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,6 @@ namespace Tindahan_ni_Chin_Chin.Controls
     public partial class Inventory : UserControl
     {
         Paginator paginator = new Paginator();
-        TabControlAdv tabControl = new TabControlAdv(); // TabControlAdv to hold the tabs
         private DataTable vendorTable, categoryTable; // DataTable to hold data
         public Inventory()
         {
@@ -31,21 +31,20 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
         private void Inventory_Load(object sender, EventArgs e)
         {
- 
         }
 
         // REUSABLE METHODS
-        private void tabControlAdv1_SelectedIndexChanged(object sender, EventArgs e)
+        private async void tabControlAdv1_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (this.tabControlAdv1.SelectedTab.Name)
             {
                 case "tabVendor":
                     cbVendorEntries.SelectedIndex = 0; // Reset to the first entry limit when switching to Vendor tab
-                    LoadVendorList(); // Load the vendor list when the Vendor tab is selected
+                    await LoadVendorList(); // Load the vendor list when the Vendor tab is selected
                     break;
                 case "tabCategory":
                     cbCategoryEntries.SelectedIndex = 0; // Reset to the first entry limit when switching to Category tab
-                    LoadCategory(); // Load the category list when the Category tab is selected
+                    await LoadCategory(); // Load the category list when the Category tab is selected
                     break;
             }
         }
@@ -153,9 +152,9 @@ namespace Tindahan_ni_Chin_Chin.Controls
         {
             var addCategoryControl = new Controls.AddCategory();
 
-            addCategoryControl.OnCategoryAdded += () => // Subscribe to the OnCategoryAdded event
+            addCategoryControl.OnCategoryAdded += async () => // Subscribe to the OnCategoryAdded event
             {
-                LoadCategory(); // Call the ReloadVendors method to refresh the vendor list
+                await LoadCategory(); // Call the ReloadVendors method to refresh the vendor list
             };
 
             Forms.AddForm addCategoryForm = new Forms.AddForm();
@@ -165,16 +164,16 @@ namespace Tindahan_ni_Chin_Chin.Controls
             addCategoryForm.ShowDialog(); // Show the AddCategory form as a dialog
         }
 
-        private void btnRefreshCategory_Click(object sender, EventArgs e)
+        private async void btnRefreshCategory_Click(object sender, EventArgs e)
         {
-            categoryTable = Database.DBCategory.getCategoryList(); // Returns a DataTable
+            categoryTable = await Database.DBCategory.getCategoryList(); // Returns a DataTable
             dgvCategory.DataSource = categoryTable; // Refresh the category list in the DataGridView
             ApplyRowLimit(cbCategoryEntries, categoryTable, dgvCategory, lblCategoryPageInfo); // Reset the row limit based on the selected value in the combo box
         }
 
-        private void LoadCategory()
+        private async Task LoadCategory()
         {
-            categoryTable = Database.DBCategory.getCategoryList(); // Returns a DataTable
+            categoryTable = await Database.DBCategory.getCategoryList(); // Returns a DataTable
             dgvCategory.DataSource = categoryTable;
 
             string selected = cbCategoryEntries.SelectedItem?.ToString() ?? "10"; // Get the selected value from the combo box or default to "10"
@@ -244,7 +243,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
         private void dgvCategory_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            dgvCategory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgvCategory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
 
             // Auto-size some columns to fit their content
             dgvCategory.Columns["#"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -318,14 +317,14 @@ namespace Tindahan_ni_Chin_Chin.Controls
         {
             vendorTable = await Database.DBVendors.GetVendorListAsync(); // Returns a DataTable
             dgvVendor.DataSource = vendorTable; // Set the DataGridView's data source to the vendor table
-            
+
             string selected = cbVendorEntries.SelectedItem?.ToString() ?? "10"; // Get the selected value from the combo box or default to "10"
 
             if (int.TryParse(selected, out int rowLimit))
             {
                 paginator.SetPageSize(rowLimit, vendorTable.Rows.Count); // Set the page size based on the selected value
             }
-           
+
             var page = paginator.GetPage(vendorTable, 1); // Get the initial page of data
             dgvVendor.DataSource = page; // Set the DataGridView's data source to the paginated data
 
@@ -361,8 +360,8 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
         private void dgvVendor_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            // Set overall mode to None so per-column settings apply
-            dgvVendor.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            //Set overall mode to None so per - column settings apply
+            dgvVendor.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
 
             // Auto-size some columns to fit their content
             dgvVendor.Columns["#"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;

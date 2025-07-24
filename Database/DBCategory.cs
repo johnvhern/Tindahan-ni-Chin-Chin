@@ -13,22 +13,23 @@ namespace Tindahan_ni_Chin_Chin.Database
 {
     internal class DBCategory
     {
-        public static DataTable getCategoryList()
+        public static Task<DataTable> getCategoryList()
         {
-            using (var conn = DatabaseCreation.GetConnection())
+            return Task.Run(() =>
             {
-                string queryGetCategory = "SELECT category_id AS '#', category_name AS 'Name' FROM category";
-
-                using (var cmd = new SQLiteCommand(queryGetCategory, conn))
-                using (var adapter = new SQLiteDataAdapter(cmd))
+                using (var conn = DatabaseCreation.GetConnection())
                 {
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    return dt;
-                }
+                    string queryGetCategory = "SELECT category_id AS '#', category_name AS 'Name' FROM category";
 
-                
-            }
+                    using (var cmd = new SQLiteCommand(queryGetCategory, conn))
+                    using (var adapter = new SQLiteDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        return dt;
+                    }
+                }
+            });
         }
         
     }
