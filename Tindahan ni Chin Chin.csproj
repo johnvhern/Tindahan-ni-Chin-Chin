@@ -136,6 +136,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\AddCategory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AddCategory.Designer.cs">
+      <DependentUpon>AddCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\AddVendor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -161,6 +167,7 @@
       <DependentUpon>SideNavigation.cs</DependentUpon>
     </Compile>
     <Compile Include="Database\DatabaseCreation.cs" />
+    <Compile Include="Database\DBCategory.cs" />
     <Compile Include="Database\DBVendors.cs" />
     <Compile Include="Forms\AddForm.cs">
       <SubType>Form</SubType>
@@ -183,6 +190,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserSession.cs" />
+    <EmbeddedResource Include="Controls\AddCategory.resx">
+      <DependentUpon>AddCategory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\AddVendor.resx">
       <DependentUpon>AddVendor.cs</DependentUpon>
     </EmbeddedResource>
