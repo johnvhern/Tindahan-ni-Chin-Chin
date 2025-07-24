@@ -49,7 +49,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
             Forms.AddForm addVendorForm = new Forms.AddForm();
             addVendorForm.OpenControl(addVendorControl); // Open the AddVendor user control in the AddProduct form
             addVendorForm.Text = "Add Vendor"; // Set the title of the AddForm
-            addVendorForm.SetBounds(0, 0, 409, 300); // Set the size of the AddForm
+            addVendorForm.SetBounds(0, 0, 409, 250); // Set the size of the AddForm
             addVendorForm.ShowDialog();
         }
 
