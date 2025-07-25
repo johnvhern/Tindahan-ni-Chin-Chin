@@ -172,6 +172,12 @@
     <Compile Include="Controls\ProductCategorySelection.Designer.cs">
       <DependentUpon>ProductCategorySelection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ProductVendorSelection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ProductVendorSelection.Designer.cs">
+      <DependentUpon>ProductVendorSelection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SideNavigation.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -226,6 +232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ProductCategorySelection.resx">
       <DependentUpon>ProductCategorySelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ProductVendorSelection.resx">
+      <DependentUpon>ProductVendorSelection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SideNavigation.resx">
       <DependentUpon>SideNavigation.cs</DependentUpon>

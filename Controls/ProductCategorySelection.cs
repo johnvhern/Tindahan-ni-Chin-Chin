@@ -103,7 +103,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
         {
             try
             {
-                DialogResult result = MessageBoxAdv.Show(this, $"Are you sure you want to add this category? {selectedCategoryName}", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBoxAdv.Show(this, $"Are you sure you want to add this category?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
@@ -128,6 +128,52 @@ namespace Tindahan_ni_Chin_Chin.Controls
             catch (Exception ex)
             {
                 MessageBoxAdv.Show(this, "An error occurred while adding the product", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (dgvSelectedCategory.Rows.Count > 1)
+                {
+                    DialogResult result = MessageBoxAdv.Show(this, "Are you sure you want to cancel the category selection?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        dgvSelectedCategory.Rows.Clear(); // Clear the selected category DataGridView
+                        dgvSelectedCategory.Columns.Clear(); // Clear the columns to reset the view
+                        selectedCategoryId = string.Empty; // Reset selected category ID
+                        selectedCategoryName = string.Empty; // Reset selected category name
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show(this, "An error occurred while cancelling category selection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtCategorySearch_TextChanged(object sender, EventArgs e)
+        {
+            DataTable categoryTable = Database.DBCategory.getCategoryList().Result; // Fetch the category list asynchronously
+
+            string filterText = txtCategorySearch.Text.Trim().Replace("'", "''"); // Prevent SQL injection-like issues
+
+            if (categoryTable != null)
+            {
+                if (string.IsNullOrEmpty(filterText))
+                {
+                    dgvProductCategory.DataSource = categoryTable;
+                }
+                else
+                {
+                    DataView dv = categoryTable.DefaultView;
+                    dv.RowFilter = $"[Name] LIKE '%{filterText}%'";
+                    dgvProductCategory.DataSource = dv;
+                }
             }
         }
     }

@@ -19,6 +19,28 @@ namespace Tindahan_ni_Chin_Chin.Controls
             InitializeComponent();
         }
 
+        private void txtProductCategory_Click(object sender, EventArgs e)
+        {
+            var productCategory = new ProductCategorySelection();
+
+            productCategory.OnSelectedCategory += () => // Subscribe to the OnCategoryAdded event
+            {
+                txtProductCategory.Text = productCategory.selectedCategoryName; // Update the text box with the selected category name
+                selectedCategoryName = productCategory.selectedCategoryName; // Store the selected category name
+                selectedCategoryId = productCategory.selectedCategoryId; // Store the selected category ID
+            };
+
+            Forms.LookupForm productCategoryForm = new Forms.LookupForm();
+            productCategoryForm.OpenControl(productCategory); // Open the AddCategory user control in the AddProduct form
+            productCategoryForm.Text = "Select Category"; // Set the title of the AddForm
+            productCategoryForm.ShowDialog(); // Show the AddCategory form as a dialog
+        }
+
+        private void txtProductVendor_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -84,7 +106,6 @@ namespace Tindahan_ni_Chin_Chin.Controls
                 this.ParentForm.Close(); // Close the parent form (AddForm) without confirmation if no data is entered
             }
         }
-
         private void messageBoxStyle()
         {
             MessageBoxAdv.MetroColorTable.BorderColor = Color.FromArgb(26, 26, 26);
@@ -96,21 +117,5 @@ namespace Tindahan_ni_Chin_Chin.Controls
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Metro;
         }
 
-        private void txtProductCategory_Click(object sender, EventArgs e)
-        {
-            var productCategory = new ProductCategorySelection();
-
-            productCategory.OnSelectedCategory += () => // Subscribe to the OnCategoryAdded event
-            {
-                txtProductCategory.Text = productCategory.selectedCategoryName; // Update the text box with the selected category name
-                selectedCategoryName = productCategory.selectedCategoryName; // Store the selected category name
-                selectedCategoryId = productCategory.selectedCategoryId; // Store the selected category ID
-            };
-
-            Forms.LookupForm productCategoryForm = new Forms.LookupForm();
-            productCategoryForm.OpenControl(productCategory); // Open the AddCategory user control in the AddProduct form
-            productCategoryForm.Text = "Select Category"; // Set the title of the AddForm
-            productCategoryForm.ShowDialog(); // Show the AddCategory form as a dialog
-        }
     }
 }

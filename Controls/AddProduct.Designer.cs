@@ -171,6 +171,7 @@
             this.txtProductVendor.ThemeName = "Metro";
             this.txtProductVendor.UseBorderColorOnFocus = true;
             this.txtProductVendor.WordWrap = false;
+            this.txtProductVendor.Click += new System.EventHandler(this.txtProductVendor_Click);
             // 
             // txtProductCategory
             // 

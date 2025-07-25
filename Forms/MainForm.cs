@@ -1,13 +1,5 @@
 ﻿using Syncfusion.Windows.Forms;
-using Syncfusion.WinForms.Controls;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tindahan_ni_Chin_Chin.Controls;
 
@@ -24,6 +16,7 @@ namespace Tindahan_ni_Chin_Chin.Forms
             this.Text = "Project POS : Version " + Application.ProductVersion;
             this.WindowState = FormWindowState.Maximized;
             SideNavigation sideNavigation = new SideNavigation(this);
+            //SideNavigation2 sideNavigation2 = new SideNavigation2();
             sideNavigation.Dock = DockStyle.Left;
             this.Controls.Add(sideNavigation);
             typeof(Panel).InvokeMember("DoubleBuffered",

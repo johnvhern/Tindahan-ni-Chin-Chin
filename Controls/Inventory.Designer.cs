@@ -450,7 +450,7 @@
             // 
             // txtSearchProduct
             // 
-            this.txtSearchProduct.BeforeTouchSize = new System.Drawing.Size(181, 27);
+            this.txtSearchProduct.BeforeTouchSize = new System.Drawing.Size(295, 40);
             this.txtSearchProduct.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearchProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtSearchProduct.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
@@ -795,7 +795,7 @@
             // 
             // txtSearchVendor
             // 
-            this.txtSearchVendor.BeforeTouchSize = new System.Drawing.Size(181, 27);
+            this.txtSearchVendor.BeforeTouchSize = new System.Drawing.Size(295, 40);
             this.txtSearchVendor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearchVendor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtSearchVendor.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
@@ -1142,7 +1142,7 @@
             // 
             // txtSearchCategory
             // 
-            this.txtSearchCategory.BeforeTouchSize = new System.Drawing.Size(181, 27);
+            this.txtSearchCategory.BeforeTouchSize = new System.Drawing.Size(295, 40);
             this.txtSearchCategory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearchCategory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtSearchCategory.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
