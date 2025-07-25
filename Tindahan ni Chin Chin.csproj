@@ -142,6 +142,12 @@
     <Compile Include="Controls\AddCategory.Designer.cs">
       <DependentUpon>AddCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\AddProduct.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AddProduct.Designer.cs">
+      <DependentUpon>AddProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\AddVendor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -168,6 +174,7 @@
     </Compile>
     <Compile Include="Database\DatabaseCreation.cs" />
     <Compile Include="Database\DBCategory.cs" />
+    <Compile Include="Database\DBProduct.cs" />
     <Compile Include="Database\DBVendors.cs" />
     <Compile Include="Forms\AddForm.cs">
       <SubType>Form</SubType>
@@ -192,6 +199,9 @@
     <Compile Include="UserSession.cs" />
     <EmbeddedResource Include="Controls\AddCategory.resx">
       <DependentUpon>AddCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\AddProduct.resx">
+      <DependentUpon>AddProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\AddVendor.resx">
       <DependentUpon>AddVendor.cs</DependentUpon>

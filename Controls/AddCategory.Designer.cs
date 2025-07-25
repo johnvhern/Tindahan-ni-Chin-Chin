@@ -123,14 +123,19 @@
             // txtCategoryName
             // 
             this.txtCategoryName.BeforeTouchSize = new System.Drawing.Size(341, 30);
+            this.txtCategoryName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
+            this.txtCategoryName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCategoryName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCategoryName.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.txtCategoryName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCategoryName.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCategoryName.Location = new System.Drawing.Point(3, 44);
             this.txtCategoryName.MinimumSize = new System.Drawing.Size(4, 30);
             this.txtCategoryName.Name = "txtCategoryName";
             this.txtCategoryName.Size = new System.Drawing.Size(341, 30);
+            this.txtCategoryName.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
             this.txtCategoryName.TabIndex = 4;
+            this.txtCategoryName.ThemeName = "Metro";
+            this.txtCategoryName.UseBorderColorOnFocus = true;
             this.txtCategoryName.WordWrap = false;
             // 
             // label1

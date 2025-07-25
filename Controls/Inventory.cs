@@ -23,7 +23,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
     public partial class Inventory : UserControl
     {
         Paginator paginator = new Paginator();
-        private DataTable vendorTable, categoryTable; // DataTable to hold data
+        private DataTable vendorTable, categoryTable, productTable; // DataTable to hold data
         public Inventory()
         {
             InitializeComponent(); 
@@ -38,6 +38,10 @@ namespace Tindahan_ni_Chin_Chin.Controls
         {
             switch (this.tabControlAdv1.SelectedTab.Name)
             {
+                case "tabProduct":
+                    cbProductEntries.SelectedIndex = 0;
+                    await LoadProductList();
+                    break;
                 case "tabVendor":
                     cbVendorEntries.SelectedIndex = 0; // Reset to the first entry limit when switching to Vendor tab
                     await LoadVendorList(); // Load the vendor list when the Vendor tab is selected
@@ -69,7 +73,6 @@ namespace Tindahan_ni_Chin_Chin.Controls
                 MessageBoxAdv.Show(this, "An error occurred while setting the row limit: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         public class Paginator
         {
@@ -144,6 +147,46 @@ namespace Tindahan_ni_Chin_Chin.Controls
             public int PageSize => _pageSize;
 
             
+        }
+
+        // ----------------------------------------------------------------------------------------------------------------- //
+
+        // PRODUCT MANAGEMENT METHODS
+
+        private async Task LoadProductList()
+        {
+            productTable = await Database.DBProduct.getProductList(); // Returns a DataTable
+            dgvProduct.DataSource = productTable;
+
+            string selected = cbProductEntries.SelectedItem?.ToString() ?? "10"; // Get the selected value from the combo box or default to "10"
+
+            if (int.TryParse(selected, out int rowLimit))
+            {
+                paginator.SetPageSize(rowLimit, productTable.Rows.Count); // Set the page size based on the selected value
+            }
+
+            var page = paginator.GetPage(productTable, 1); // Get the initial page of data
+            dgvProduct.DataSource = page; // Set the DataGridView's data source to the paginated data
+
+            var (start, end) = paginator.GetDisplayRange(productTable.Rows.Count); // Get the display range for the current page
+            lblProductCurrentPage.Text = paginator.CurrentPage.ToString(); // Update the current page label
+            lblProductPageInfo.Text = $"Showing {start} to {end} of {productTable.Rows.Count} entries";
+        }
+
+        private void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            var addProductControl = new Controls.AddProduct();
+
+            addProductControl.OnProductAdded += async () => // Subscribe to the OnCategoryAdded event
+            {
+                await LoadProductList(); // Call the ReloadVendors method to refresh the vendor list
+            };
+
+            Forms.AddForm addProductForm = new Forms.AddForm();
+            addProductForm.OpenControl(addProductControl); // Open the AddCategory user control in the AddProduct form
+            addProductForm.Text = "Add Product"; // Set the title of the AddForm
+            addProductForm.SetBounds(0, 0, 409, 500); // Set the size of the AddForm
+            addProductForm.ShowDialog(); // Show the AddCategory form as a dialog
         }
 
         // CATEGORY MANAGEMENT METHODS

@@ -142,27 +142,37 @@
             // txtVendorName
             // 
             this.txtVendorName.BeforeTouchSize = new System.Drawing.Size(341, 30);
+            this.txtVendorName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
+            this.txtVendorName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtVendorName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtVendorName.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.txtVendorName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtVendorName.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtVendorName.Location = new System.Drawing.Point(3, 37);
             this.txtVendorName.MinimumSize = new System.Drawing.Size(4, 30);
             this.txtVendorName.Name = "txtVendorName";
             this.txtVendorName.Size = new System.Drawing.Size(341, 30);
+            this.txtVendorName.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
             this.txtVendorName.TabIndex = 4;
+            this.txtVendorName.ThemeName = "Metro";
+            this.txtVendorName.UseBorderColorOnFocus = true;
             this.txtVendorName.WordWrap = false;
             // 
             // txtVendorContactNumber
             // 
             this.txtVendorContactNumber.BeforeTouchSize = new System.Drawing.Size(341, 30);
+            this.txtVendorContactNumber.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
+            this.txtVendorContactNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtVendorContactNumber.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtVendorContactNumber.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.txtVendorContactNumber.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtVendorContactNumber.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtVendorContactNumber.Location = new System.Drawing.Point(3, 105);
             this.txtVendorContactNumber.MinimumSize = new System.Drawing.Size(4, 30);
             this.txtVendorContactNumber.Name = "txtVendorContactNumber";
             this.txtVendorContactNumber.Size = new System.Drawing.Size(341, 30);
+            this.txtVendorContactNumber.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
             this.txtVendorContactNumber.TabIndex = 5;
+            this.txtVendorContactNumber.ThemeName = "Metro";
+            this.txtVendorContactNumber.UseBorderColorOnFocus = true;
             this.txtVendorContactNumber.WordWrap = false;
             // 
             // label1
