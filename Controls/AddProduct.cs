@@ -1,14 +1,8 @@
 ﻿using Syncfusion.Windows.Forms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Tindahan_ni_Chin_Chin.Controls
@@ -18,6 +12,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
         public Action OnProductAdded; // callback to notify parent form
         public AddProduct()
         {
+            messageBoxStyle(); // Apply custom message box style
             InitializeComponent();
         }
 
@@ -62,26 +57,29 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            //string vendorName = txtVendorName.Text.Trim();
-            //string vendorContact = txtVendorContactNumber.Text.Trim();
+            string productName = txtProductName.Text.Trim();
+            string productPrice = txtProductPrice.Text.Trim();
+            string productStock = txtProductStock.Text.Trim();
+            string productCategory = txtProductCategory.Text.Trim();
+            string productVendor = txtProductVendor.Text.Trim();
 
-            //if (!string.IsNullOrEmpty(vendorName) || !string.IsNullOrEmpty(vendorContact))
-            //{
-            //    DialogResult result = MessageBoxAdv.Show(this, "Are you sure you want to cancel?", "Confirm Cancel", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (!string.IsNullOrEmpty(productName) || !string.IsNullOrEmpty(productPrice) || !string.IsNullOrEmpty(productStock) || !string.IsNullOrEmpty(productCategory) || !string.IsNullOrEmpty(productVendor))
+            {
+                DialogResult result = MessageBoxAdv.Show(this, "Are you sure you want to cancel?", "Confirm Cancel", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            //    if (result == DialogResult.Yes)
-            //    {
-            //        this.ParentForm.Close(); // Close the parent form (AddForm)
-            //    }
-            //    else
-            //    {
-            //        return;
-            //    }
-            //}
-            //else
-            //{
-            //    this.ParentForm.Close(); // Close the parent form (AddForm) without confirmation if no data is entered
-            //}
+                if (result == DialogResult.Yes)
+                {
+                    this.ParentForm.Close(); // Close the parent form (AddForm)
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                this.ParentForm.Close(); // Close the parent form (AddForm) without confirmation if no data is entered
+            }
         }
 
         private void messageBoxStyle()
@@ -93,6 +91,21 @@ namespace Tindahan_ni_Chin_Chin.Controls
             MessageBoxAdv.MetroColorTable.YesButtonBackColor = Color.FromArgb(26, 26, 26);
             MessageBoxAdv.MetroColorTable.NoButtonBackColor = Color.FromArgb(26, 26, 26);
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Metro;
+        }
+
+        private void txtProductCategory_Click(object sender, EventArgs e)
+        {
+            var productCategory = new ProductCategorySelection();
+
+            Forms.LookupForm productCategoryForm = new Forms.LookupForm();
+            productCategoryForm.OpenControl(productCategory); // Open the AddCategory user control in the AddProduct form
+            productCategoryForm.Text = "Select Category"; // Set the title of the AddForm
+            productCategoryForm.ShowDialog(); // Show the AddCategory form as a dialog
+        }
+
+        private void txtProductVendor_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

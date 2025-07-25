@@ -1,22 +1,9 @@
-﻿using Syncfusion.Compression.Zip;
-using Syncfusion.Pdf.Interactive;
-using Syncfusion.Windows.Forms;
-using Syncfusion.Windows.Forms.Tools;
-using Syncfusion.WinForms.DataGrid;
-using Syncfusion.WinForms.DataGrid.Enums;
+﻿using Syncfusion.Windows.Forms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
-using Tindahan_ni_Chin_Chin.Database;
 
 namespace Tindahan_ni_Chin_Chin.Controls
 {
@@ -26,7 +13,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
         private DataTable vendorTable, categoryTable, productTable; // DataTable to hold data
         public Inventory()
         {
-            InitializeComponent(); 
+            InitializeComponent();
         }
 
         private void Inventory_Load(object sender, EventArgs e)
@@ -111,7 +98,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
                 {
                     SetPageSize(newSize, sourceTable.Rows.Count);
                     return GetPage(sourceTable, _currentPage);
-                    
+
                 }
 
                 return sourceTable;
@@ -146,7 +133,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
             public int TotalPages => _totalPages;
             public int PageSize => _pageSize;
 
-            
+
         }
 
         // ----------------------------------------------------------------------------------------------------------------- //
@@ -232,7 +219,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
             var (start, end) = paginator.GetDisplayRange(categoryTable.Rows.Count); // Get the display range for the current page
             lblCurrentCategoryPage.Text = paginator.CurrentPage.ToString(); // Update the current page label
             lblCategoryPageInfo.Text = $"Showing {start} to {end} of {categoryTable.Rows.Count} entries"; // Update the label with the display range information
-            
+
         }
 
         private void txtSearchCategory_TextChanged(object sender, EventArgs e)
@@ -394,7 +381,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
                     dgvVendor.DataSource = dv;
                 }
             }
-        } 
+        }
 
         private void cbVendorEntries_SelectedIndexChanged(object sender, EventArgs e)
         {

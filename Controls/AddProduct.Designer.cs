@@ -28,29 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            Syncfusion.Windows.Forms.BannerTextInfo bannerTextInfo1 = new Syncfusion.Windows.Forms.BannerTextInfo();
+            Syncfusion.Windows.Forms.BannerTextInfo bannerTextInfo2 = new Syncfusion.Windows.Forms.BannerTextInfo();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBoxExt2 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            this.textBoxExt1 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.txtProductVendor = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.txtProductCategory = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.txtProductStock = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.txtProductPrice = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtVendorName = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.txtProductName = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBoxExt3 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            this.textBoxExt4 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.bannerTextProvider1 = new Syncfusion.Windows.Forms.BannerTextProvider(this.components);
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textBoxExt2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textBoxExt1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtVendorName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textBoxExt3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textBoxExt4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductVendor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductCategory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductStock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductName)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -79,9 +83,10 @@
             this.btnCancel.Location = new System.Drawing.Point(3, 23);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 37);
-            this.btnCancel.TabIndex = 3;
+            this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnAdd
             // 
@@ -94,7 +99,7 @@
             this.btnAdd.Location = new System.Drawing.Point(103, 23);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(94, 37);
-            this.btnAdd.TabIndex = 2;
+            this.btnAdd.TabIndex = 6;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
             // 
@@ -118,12 +123,12 @@
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.textBoxExt4, 0, 5);
-            this.tableLayoutPanel3.Controls.Add(this.textBoxExt3, 0, 3);
-            this.tableLayoutPanel3.Controls.Add(this.textBoxExt2, 0, 9);
-            this.tableLayoutPanel3.Controls.Add(this.textBoxExt1, 0, 7);
+            this.tableLayoutPanel3.Controls.Add(this.txtProductVendor, 0, 5);
+            this.tableLayoutPanel3.Controls.Add(this.txtProductCategory, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.txtProductStock, 0, 9);
+            this.tableLayoutPanel3.Controls.Add(this.txtProductPrice, 0, 7);
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.txtVendorName, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.txtProductName, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.label2, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.label3, 0, 4);
             this.tableLayoutPanel3.Controls.Add(this.label4, 0, 6);
@@ -145,41 +150,87 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(347, 375);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
-            // textBoxExt2
+            // txtProductVendor
             // 
-            this.textBoxExt2.BeforeTouchSize = new System.Drawing.Size(341, 30);
-            this.textBoxExt2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
-            this.textBoxExt2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxExt2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxExt2.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.textBoxExt2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxExt2.Location = new System.Drawing.Point(3, 336);
-            this.textBoxExt2.MinimumSize = new System.Drawing.Size(4, 30);
-            this.textBoxExt2.Name = "textBoxExt2";
-            this.textBoxExt2.Size = new System.Drawing.Size(341, 30);
-            this.textBoxExt2.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
-            this.textBoxExt2.TabIndex = 16;
-            this.textBoxExt2.ThemeName = "Metro";
-            this.textBoxExt2.UseBorderColorOnFocus = true;
-            this.textBoxExt2.WordWrap = false;
+            bannerTextInfo1.Text = "Click to select vendor";
+            bannerTextInfo1.Visible = true;
+            this.bannerTextProvider1.SetBannerText(this.txtProductVendor, bannerTextInfo1);
+            this.txtProductVendor.BeforeTouchSize = new System.Drawing.Size(181, 27);
+            this.txtProductVendor.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
+            this.txtProductVendor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtProductVendor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtProductVendor.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.txtProductVendor.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductVendor.Location = new System.Drawing.Point(3, 188);
+            this.txtProductVendor.MinimumSize = new System.Drawing.Size(4, 30);
+            this.txtProductVendor.Name = "txtProductVendor";
+            this.txtProductVendor.ReadOnly = true;
+            this.txtProductVendor.Size = new System.Drawing.Size(341, 30);
+            this.txtProductVendor.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
+            this.txtProductVendor.TabIndex = 2;
+            this.txtProductVendor.ThemeName = "Metro";
+            this.txtProductVendor.UseBorderColorOnFocus = true;
+            this.txtProductVendor.WordWrap = false;
+            this.txtProductVendor.TextChanged += new System.EventHandler(this.txtProductVendor_TextChanged);
             // 
-            // textBoxExt1
+            // txtProductCategory
             // 
-            this.textBoxExt1.BeforeTouchSize = new System.Drawing.Size(341, 30);
-            this.textBoxExt1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
-            this.textBoxExt1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxExt1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxExt1.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.textBoxExt1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxExt1.Location = new System.Drawing.Point(3, 262);
-            this.textBoxExt1.MinimumSize = new System.Drawing.Size(4, 30);
-            this.textBoxExt1.Name = "textBoxExt1";
-            this.textBoxExt1.Size = new System.Drawing.Size(341, 30);
-            this.textBoxExt1.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
-            this.textBoxExt1.TabIndex = 15;
-            this.textBoxExt1.ThemeName = "Metro";
-            this.textBoxExt1.UseBorderColorOnFocus = true;
-            this.textBoxExt1.WordWrap = false;
+            bannerTextInfo2.Text = "Click to select category";
+            bannerTextInfo2.Visible = true;
+            this.bannerTextProvider1.SetBannerText(this.txtProductCategory, bannerTextInfo2);
+            this.txtProductCategory.BeforeTouchSize = new System.Drawing.Size(181, 27);
+            this.txtProductCategory.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
+            this.txtProductCategory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtProductCategory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtProductCategory.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.txtProductCategory.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductCategory.Location = new System.Drawing.Point(3, 114);
+            this.txtProductCategory.MinimumSize = new System.Drawing.Size(4, 30);
+            this.txtProductCategory.Name = "txtProductCategory";
+            this.txtProductCategory.ReadOnly = true;
+            this.txtProductCategory.Size = new System.Drawing.Size(341, 30);
+            this.txtProductCategory.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
+            this.txtProductCategory.TabIndex = 1;
+            this.txtProductCategory.ThemeName = "Metro";
+            this.txtProductCategory.UseBorderColorOnFocus = true;
+            this.txtProductCategory.WordWrap = false;
+            this.txtProductCategory.Click += new System.EventHandler(this.txtProductCategory_Click);
+            // 
+            // txtProductStock
+            // 
+            this.txtProductStock.BeforeTouchSize = new System.Drawing.Size(181, 27);
+            this.txtProductStock.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
+            this.txtProductStock.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtProductStock.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtProductStock.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.txtProductStock.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductStock.Location = new System.Drawing.Point(3, 336);
+            this.txtProductStock.MinimumSize = new System.Drawing.Size(4, 30);
+            this.txtProductStock.Name = "txtProductStock";
+            this.txtProductStock.Size = new System.Drawing.Size(341, 30);
+            this.txtProductStock.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
+            this.txtProductStock.TabIndex = 4;
+            this.txtProductStock.ThemeName = "Metro";
+            this.txtProductStock.UseBorderColorOnFocus = true;
+            this.txtProductStock.WordWrap = false;
+            // 
+            // txtProductPrice
+            // 
+            this.txtProductPrice.BeforeTouchSize = new System.Drawing.Size(181, 27);
+            this.txtProductPrice.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
+            this.txtProductPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtProductPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtProductPrice.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.txtProductPrice.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductPrice.Location = new System.Drawing.Point(3, 262);
+            this.txtProductPrice.MinimumSize = new System.Drawing.Size(4, 30);
+            this.txtProductPrice.Name = "txtProductPrice";
+            this.txtProductPrice.Size = new System.Drawing.Size(341, 30);
+            this.txtProductPrice.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
+            this.txtProductPrice.TabIndex = 3;
+            this.txtProductPrice.ThemeName = "Metro";
+            this.txtProductPrice.UseBorderColorOnFocus = true;
+            this.txtProductPrice.WordWrap = false;
             // 
             // label1
             // 
@@ -193,23 +244,23 @@
             this.label1.Text = "Product Name";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtVendorName
+            // txtProductName
             // 
-            this.txtVendorName.BeforeTouchSize = new System.Drawing.Size(341, 30);
-            this.txtVendorName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
-            this.txtVendorName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtVendorName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtVendorName.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.txtVendorName.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtVendorName.Location = new System.Drawing.Point(3, 40);
-            this.txtVendorName.MinimumSize = new System.Drawing.Size(4, 30);
-            this.txtVendorName.Name = "txtVendorName";
-            this.txtVendorName.Size = new System.Drawing.Size(341, 30);
-            this.txtVendorName.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
-            this.txtVendorName.TabIndex = 7;
-            this.txtVendorName.ThemeName = "Metro";
-            this.txtVendorName.UseBorderColorOnFocus = true;
-            this.txtVendorName.WordWrap = false;
+            this.txtProductName.BeforeTouchSize = new System.Drawing.Size(181, 27);
+            this.txtProductName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
+            this.txtProductName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtProductName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtProductName.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.txtProductName.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductName.Location = new System.Drawing.Point(3, 40);
+            this.txtProductName.MinimumSize = new System.Drawing.Size(4, 30);
+            this.txtProductName.Name = "txtProductName";
+            this.txtProductName.Size = new System.Drawing.Size(341, 30);
+            this.txtProductName.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
+            this.txtProductName.TabIndex = 0;
+            this.txtProductName.ThemeName = "Metro";
+            this.txtProductName.UseBorderColorOnFocus = true;
+            this.txtProductName.WordWrap = false;
             // 
             // label2
             // 
@@ -259,44 +310,6 @@
             this.label5.Text = "Stock";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBoxExt3
-            // 
-            this.textBoxExt3.BeforeTouchSize = new System.Drawing.Size(341, 30);
-            this.textBoxExt3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
-            this.textBoxExt3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxExt3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxExt3.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.textBoxExt3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxExt3.Location = new System.Drawing.Point(3, 114);
-            this.textBoxExt3.MinimumSize = new System.Drawing.Size(4, 30);
-            this.textBoxExt3.Name = "textBoxExt3";
-            this.textBoxExt3.ReadOnly = true;
-            this.textBoxExt3.Size = new System.Drawing.Size(341, 30);
-            this.textBoxExt3.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
-            this.textBoxExt3.TabIndex = 17;
-            this.textBoxExt3.ThemeName = "Metro";
-            this.textBoxExt3.UseBorderColorOnFocus = true;
-            this.textBoxExt3.WordWrap = false;
-            // 
-            // textBoxExt4
-            // 
-            this.textBoxExt4.BeforeTouchSize = new System.Drawing.Size(341, 30);
-            this.textBoxExt4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
-            this.textBoxExt4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxExt4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxExt4.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.textBoxExt4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxExt4.Location = new System.Drawing.Point(3, 188);
-            this.textBoxExt4.MinimumSize = new System.Drawing.Size(4, 30);
-            this.textBoxExt4.Name = "textBoxExt4";
-            this.textBoxExt4.ReadOnly = true;
-            this.textBoxExt4.Size = new System.Drawing.Size(341, 30);
-            this.textBoxExt4.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
-            this.textBoxExt4.TabIndex = 18;
-            this.textBoxExt4.ThemeName = "Metro";
-            this.textBoxExt4.UseBorderColorOnFocus = true;
-            this.textBoxExt4.WordWrap = false;
-            // 
             // AddProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -308,11 +321,11 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textBoxExt2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textBoxExt1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtVendorName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textBoxExt3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textBoxExt4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductVendor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductCategory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductStock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductName)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -323,15 +336,16 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtVendorName;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtProductName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt1;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt2;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt4;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt3;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtProductPrice;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtProductStock;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtProductVendor;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtProductCategory;
+        private Syncfusion.Windows.Forms.BannerTextProvider bannerTextProvider1;
     }
 }

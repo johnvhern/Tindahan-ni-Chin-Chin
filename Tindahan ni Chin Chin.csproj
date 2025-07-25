@@ -166,6 +166,12 @@
     <Compile Include="Controls\POS.Designer.cs">
       <DependentUpon>POS.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ProductCategorySelection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ProductCategorySelection.Designer.cs">
+      <DependentUpon>ProductCategorySelection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SideNavigation.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -187,6 +193,12 @@
     </Compile>
     <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LookupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LookupForm.Designer.cs">
+      <DependentUpon>LookupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -212,6 +224,9 @@
     <EmbeddedResource Include="Controls\POS.resx">
       <DependentUpon>POS.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ProductCategorySelection.resx">
+      <DependentUpon>ProductCategorySelection.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\SideNavigation.resx">
       <DependentUpon>SideNavigation.cs</DependentUpon>
     </EmbeddedResource>
@@ -220,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LookupForm.resx">
+      <DependentUpon>LookupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
