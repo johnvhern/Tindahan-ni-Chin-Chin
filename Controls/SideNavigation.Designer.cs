@@ -268,6 +268,7 @@
             this.btnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDashboard.UseVisualStyleBackColor = true;
+            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
             // btnPOS
             // 
@@ -285,6 +286,7 @@
             this.btnPOS.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPOS.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPOS.UseVisualStyleBackColor = true;
+            this.btnPOS.Click += new System.EventHandler(this.btnPOS_Click);
             // 
             // btnPautang
             // 
@@ -302,6 +304,7 @@
             this.btnPautang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPautang.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPautang.UseVisualStyleBackColor = true;
+            this.btnPautang.Click += new System.EventHandler(this.btnPautang_Click);
             // 
             // label10
             // 
@@ -343,6 +346,7 @@
             this.btnProducts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProducts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnProducts.UseVisualStyleBackColor = true;
+            this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
             // 
             // btnCategories
             // 
@@ -360,6 +364,7 @@
             this.btnCategories.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCategories.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCategories.UseVisualStyleBackColor = true;
+            this.btnCategories.Click += new System.EventHandler(this.btnCategories_Click);
             // 
             // btnVendors
             // 
@@ -377,6 +382,7 @@
             this.btnVendors.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVendors.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVendors.UseVisualStyleBackColor = true;
+            this.btnVendors.Click += new System.EventHandler(this.btnVendors_Click);
             // 
             // label9
             // 
@@ -418,6 +424,7 @@
             this.btnManageStock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnManageStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnManageStock.UseVisualStyleBackColor = true;
+            this.btnManageStock.Click += new System.EventHandler(this.btnManageStock_Click);
             // 
             // btnStockAdjustment
             // 
@@ -435,6 +442,7 @@
             this.btnStockAdjustment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStockAdjustment.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnStockAdjustment.UseVisualStyleBackColor = true;
+            this.btnStockAdjustment.Click += new System.EventHandler(this.btnStockAdjustment_Click);
             // 
             // label11
             // 

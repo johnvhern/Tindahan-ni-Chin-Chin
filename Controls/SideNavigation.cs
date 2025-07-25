@@ -10,8 +10,16 @@ namespace Tindahan_ni_Chin_Chin.Controls
         private Button activeButton;
 
         // User controls for different modules
-        Controls.POS POS = new Controls.POS();
-        Controls.Inventory Inventory = new Controls.Inventory();
+        POS POS = new Controls.POS();
+        ProductsUC ProductsUC = new Controls.ProductsUC();
+        CategoriesUC CategoriesUC = new Controls.CategoriesUC();
+        VendorsUC VendorsUC = new VendorsUC();
+
+        public SideNavigation(Forms.MainForm form)
+        {
+            InitializeComponent();
+            this.mainForm = form; // Store the reference to the main view
+        }
 
         private void ColorActiveButton(Button button)
         {
@@ -26,30 +34,6 @@ namespace Tindahan_ni_Chin_Chin.Controls
             activeButton.ForeColor = Color.FromArgb(242, 242, 242); // Set active button color
         }
 
-        public SideNavigation(Forms.MainForm form)
-        {
-            InitializeComponent();
-            this.mainForm = form; // Store the reference to the main view
-        }
-        private void btnDashboard_Click(object sender, EventArgs e)
-        {
-            ColorActiveButton((Button)sender); // Highlight the active button
-        }
-
-
-        private void btnPOS_Click(object sender, EventArgs e)
-        {
-            mainForm.OpenControl(POS); // Open the POS user control in the main view
-            ColorActiveButton((Button)sender);
-
-        }
-
-        private void btnInventory_Click(object sender, EventArgs e)
-        {
-            mainForm.OpenControl(Inventory); // Open the Inventory user control in the main view
-            ColorActiveButton((Button)sender);
-        }
-
         private void SideNavigation_Load(object sender, EventArgs e)
         {
             txtUser.Text = UserSession.Username; // Set the username from the session
@@ -57,9 +41,49 @@ namespace Tindahan_ni_Chin_Chin.Controls
             flowLayoutPanel1.HorizontalScroll.Enabled = false; // Disable vertical scrolling
         }
 
-        private void panel3_Scroll(object sender, ScrollEventArgs e)
+        private void btnDashboard_Click(object sender, EventArgs e)
         {
-            flowLayoutPanel1.AutoScrollPosition = new Point(flowLayoutPanel1.AutoScrollPosition.X, e.NewValue);
+
+        }
+
+        private void btnPOS_Click(object sender, EventArgs e)
+        {
+            mainForm.OpenControl(POS);
+            ColorActiveButton((Button)sender);
+        }
+
+        private void btnPautang_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnProducts_Click(object sender, EventArgs e)
+        {
+            mainForm.OpenControl(ProductsUC);
+            ColorActiveButton((Button)sender);
+
+        }
+
+        private void btnCategories_Click(object sender, EventArgs e)
+        {
+            mainForm.OpenControl(CategoriesUC);
+            ColorActiveButton((Button)sender);
+        }
+
+        private void btnVendors_Click(object sender, EventArgs e)
+        {
+            mainForm.OpenControl(VendorsUC);
+            ColorActiveButton((Button)sender);
+        }
+
+        private void btnManageStock_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStockAdjustment_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

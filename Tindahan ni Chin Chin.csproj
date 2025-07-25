@@ -154,6 +154,12 @@
     <Compile Include="Controls\AddVendor.Designer.cs">
       <DependentUpon>AddVendor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CategoriesUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CategoriesUC.Designer.cs">
+      <DependentUpon>CategoriesUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Inventory.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -172,6 +178,12 @@
     <Compile Include="Controls\ProductCategorySelection.Designer.cs">
       <DependentUpon>ProductCategorySelection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ProductsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ProductsUC.Designer.cs">
+      <DependentUpon>ProductsUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ProductVendorSelection.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -183,6 +195,12 @@
     </Compile>
     <Compile Include="Controls\SideNavigation.Designer.cs">
       <DependentUpon>SideNavigation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\VendorsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\VendorsUC.Designer.cs">
+      <DependentUpon>VendorsUC.cs</DependentUpon>
     </Compile>
     <Compile Include="Database\DatabaseCreation.cs" />
     <Compile Include="Database\DBCategory.cs" />
@@ -224,6 +242,9 @@
     <EmbeddedResource Include="Controls\AddVendor.resx">
       <DependentUpon>AddVendor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CategoriesUC.resx">
+      <DependentUpon>CategoriesUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Inventory.resx">
       <DependentUpon>Inventory.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,11 +254,17 @@
     <EmbeddedResource Include="Controls\ProductCategorySelection.resx">
       <DependentUpon>ProductCategorySelection.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ProductsUC.resx">
+      <DependentUpon>ProductsUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ProductVendorSelection.resx">
       <DependentUpon>ProductVendorSelection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SideNavigation.resx">
       <DependentUpon>SideNavigation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\VendorsUC.resx">
+      <DependentUpon>VendorsUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddForm.resx">
       <DependentUpon>AddForm.cs</DependentUpon>
