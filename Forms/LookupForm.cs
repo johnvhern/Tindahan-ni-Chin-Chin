@@ -27,5 +27,6 @@ namespace Tindahan_ni_Chin_Chin.Forms
             control.Dock = DockStyle.Fill;
             panelControl.Controls.Add(control);
         }
+
     }
 }

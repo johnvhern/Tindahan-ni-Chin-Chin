@@ -10,6 +10,9 @@ namespace Tindahan_ni_Chin_Chin.Controls
     public partial class AddProduct : UserControl
     {
         public Action OnProductAdded; // callback to notify parent form
+        private string selectedCategoryId;
+        private string selectedCategoryName;
+
         public AddProduct()
         {
             messageBoxStyle(); // Apply custom message box style
@@ -97,15 +100,17 @@ namespace Tindahan_ni_Chin_Chin.Controls
         {
             var productCategory = new ProductCategorySelection();
 
+            productCategory.OnSelectedCategory += () => // Subscribe to the OnCategoryAdded event
+            {
+                txtProductCategory.Text = productCategory.selectedCategoryName; // Update the text box with the selected category name
+                selectedCategoryName = productCategory.selectedCategoryName; // Store the selected category name
+                selectedCategoryId = productCategory.selectedCategoryId; // Store the selected category ID
+            };
+
             Forms.LookupForm productCategoryForm = new Forms.LookupForm();
             productCategoryForm.OpenControl(productCategory); // Open the AddCategory user control in the AddProduct form
             productCategoryForm.Text = "Select Category"; // Set the title of the AddForm
             productCategoryForm.ShowDialog(); // Show the AddCategory form as a dialog
-        }
-
-        private void txtProductVendor_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

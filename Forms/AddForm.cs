@@ -1,12 +1,4 @@
 ﻿using Syncfusion.Windows.Forms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Tindahan_ni_Chin_Chin.Forms
@@ -32,6 +24,13 @@ namespace Tindahan_ni_Chin_Chin.Forms
             }
 
             currentControl = control;
+            control.Dock = DockStyle.Fill;
+            panelControl.Controls.Add(control);
+        }
+
+        public void LoadUserControl(UserControl control)
+        {
+            panelControl.Controls.Clear(); // Replace with your main container panel
             control.Dock = DockStyle.Fill;
             panelControl.Controls.Add(control);
         }

@@ -155,7 +155,7 @@
             bannerTextInfo1.Text = "Click to select vendor";
             bannerTextInfo1.Visible = true;
             this.bannerTextProvider1.SetBannerText(this.txtProductVendor, bannerTextInfo1);
-            this.txtProductVendor.BeforeTouchSize = new System.Drawing.Size(181, 27);
+            this.txtProductVendor.BeforeTouchSize = new System.Drawing.Size(341, 30);
             this.txtProductVendor.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.txtProductVendor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtProductVendor.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -171,14 +171,13 @@
             this.txtProductVendor.ThemeName = "Metro";
             this.txtProductVendor.UseBorderColorOnFocus = true;
             this.txtProductVendor.WordWrap = false;
-            this.txtProductVendor.TextChanged += new System.EventHandler(this.txtProductVendor_TextChanged);
             // 
             // txtProductCategory
             // 
             bannerTextInfo2.Text = "Click to select category";
             bannerTextInfo2.Visible = true;
             this.bannerTextProvider1.SetBannerText(this.txtProductCategory, bannerTextInfo2);
-            this.txtProductCategory.BeforeTouchSize = new System.Drawing.Size(181, 27);
+            this.txtProductCategory.BeforeTouchSize = new System.Drawing.Size(341, 30);
             this.txtProductCategory.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.txtProductCategory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtProductCategory.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -198,7 +197,7 @@
             // 
             // txtProductStock
             // 
-            this.txtProductStock.BeforeTouchSize = new System.Drawing.Size(181, 27);
+            this.txtProductStock.BeforeTouchSize = new System.Drawing.Size(341, 30);
             this.txtProductStock.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.txtProductStock.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtProductStock.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -216,7 +215,7 @@
             // 
             // txtProductPrice
             // 
-            this.txtProductPrice.BeforeTouchSize = new System.Drawing.Size(181, 27);
+            this.txtProductPrice.BeforeTouchSize = new System.Drawing.Size(341, 30);
             this.txtProductPrice.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.txtProductPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtProductPrice.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -246,7 +245,7 @@
             // 
             // txtProductName
             // 
-            this.txtProductName.BeforeTouchSize = new System.Drawing.Size(181, 27);
+            this.txtProductName.BeforeTouchSize = new System.Drawing.Size(341, 30);
             this.txtProductName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.txtProductName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtProductName.Dock = System.Windows.Forms.DockStyle.Fill;
