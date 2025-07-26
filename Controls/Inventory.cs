@@ -1,5 +1,4 @@
-﻿using Syncfusion.Windows.Forms;
-using System;
+﻿using System;
 using System.Data;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -9,8 +8,8 @@ namespace Tindahan_ni_Chin_Chin.Controls
 {
     public partial class Inventory : UserControl
     {
-        Paginator paginator = new Paginator();
         private DataTable vendorTable, categoryTable, productTable; // DataTable to hold data
+        private PaginationHelper paginationHelper = new PaginationHelper(); // Instance of PaginationHelper to manage pagination
         public Inventory()
         {
             InitializeComponent();
@@ -40,101 +39,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
             }
         }
 
-        private void ApplyRowLimit(ComboBox comboBox, DataTable sourceTable, DataGridView targetGrid, Label infoLabel)
-        {
-            try
-            {
-                if (sourceTable != null)
-                {
-                    string selected = comboBox.SelectedItem.ToString();
-                    DataTable paged = paginator.ApplyRowLimit(sourceTable, selected);
 
-                    var (start, end) = paginator.GetDisplayRange(sourceTable.Rows.Count);
-
-                    infoLabel.Text = $"Showing {start} to {end} of {sourceTable.Rows.Count} entries";
-                    targetGrid.DataSource = paged;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBoxAdv.Show(this, "An error occurred while setting the row limit: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public class Paginator
-        {
-            private int _pageSize = 10;
-            private int _currentPage = 1;
-            private int _totalPages = 1;
-
-            public void SetPageSize(int newSize, int totalRows)
-            {
-                _pageSize = newSize;
-                _currentPage = 1;
-                CalculateTotalPages(totalRows);
-            }
-
-
-            public (int Start, int End) GetDisplayRange(int totalRows)
-            {
-                int start = (_currentPage - 1) * _pageSize + 1;
-                int end = Math.Min(_currentPage * _pageSize, totalRows);
-
-                if (totalRows == 0) // handle empty state
-                {
-                    start = 0;
-                    end = 0;
-                }
-
-                return (start, end);
-            }
-
-            public DataTable ApplyRowLimit(DataTable sourceTable, string selectedValue)
-            {
-                if (sourceTable == null || string.IsNullOrEmpty(selectedValue))
-                    return null;
-
-                if (int.TryParse(selectedValue, out int newSize))
-                {
-                    SetPageSize(newSize, sourceTable.Rows.Count);
-                    return GetPage(sourceTable, _currentPage);
-
-                }
-
-                return sourceTable;
-            }
-
-
-            private void CalculateTotalPages(int rowCount)
-            {
-                _totalPages = (_pageSize == 0) ? 1 : (int)Math.Ceiling((double)rowCount / _pageSize);
-            }
-
-            public DataTable GetPage(DataTable sourceTable, int pageNumber)
-            {
-                if (sourceTable == null || _pageSize <= 0)
-                    return sourceTable;
-
-                _currentPage = Math.Max(1, Math.Min(pageNumber, _totalPages));
-
-                var resultTable = sourceTable.Clone();
-                int startIndex = (_currentPage - 1) * _pageSize;
-                int endIndex = Math.Min(startIndex + _pageSize, sourceTable.Rows.Count);
-
-                for (int i = startIndex; i < endIndex; i++)
-                {
-                    resultTable.ImportRow(sourceTable.Rows[i]);
-                }
-
-                return resultTable;
-            }
-
-            public int CurrentPage => _currentPage;
-            public int TotalPages => _totalPages;
-            public int PageSize => _pageSize;
-
-
-        }
 
         // ----------------------------------------------------------------------------------------------------------------- //
 
@@ -149,14 +54,14 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
             if (int.TryParse(selected, out int rowLimit))
             {
-                paginator.SetPageSize(rowLimit, productTable.Rows.Count); // Set the page size based on the selected value
+                paginationHelper.SetPageSize(rowLimit, productTable.Rows.Count); // Set the page size based on the selected value
             }
 
-            var page = paginator.GetPage(productTable, 1); // Get the initial page of data
+            var page = paginationHelper.GetPage(productTable, 1); // Get the initial page of data
             dgvProduct.DataSource = page; // Set the DataGridView's data source to the paginated data
 
-            var (start, end) = paginator.GetDisplayRange(productTable.Rows.Count); // Get the display range for the current page
-            lblProductCurrentPage.Text = paginator.CurrentPage.ToString(); // Update the current page label
+            var (start, end) = paginationHelper.GetDisplayRange(productTable.Rows.Count); // Get the display range for the current page
+            lblProductCurrentPage.Text = paginationHelper.CurrentPage.ToString(); // Update the current page label
             lblProductPageInfo.Text = $"Showing {start} to {end} of {productTable.Rows.Count} entries";
         }
 
@@ -198,7 +103,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
         {
             categoryTable = await Database.DBCategory.getCategoryList(); // Returns a DataTable
             dgvCategory.DataSource = categoryTable; // Refresh the category list in the DataGridView
-            ApplyRowLimit(cbCategoryEntries, categoryTable, dgvCategory, lblCategoryPageInfo); // Reset the row limit based on the selected value in the combo box
+            paginationHelper.ApplyRowLimit(cbCategoryEntries, categoryTable, dgvCategory, lblCategoryPageInfo); // Reset the row limit based on the selected value in the combo box
         }
 
         private async Task LoadCategory()
@@ -210,14 +115,14 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
             if (int.TryParse(selected, out int rowLimit))
             {
-                paginator.SetPageSize(rowLimit, categoryTable.Rows.Count); // Set the page size based on the selected value
+                paginationHelper.SetPageSize(rowLimit, categoryTable.Rows.Count); // Set the page size based on the selected value
             }
 
-            var page = paginator.GetPage(categoryTable, 1); // Get the initial page of data
+            var page = paginationHelper.GetPage(categoryTable, 1); // Get the initial page of data
             dgvCategory.DataSource = page; // Set the DataGridView's data source to the paginated data
 
-            var (start, end) = paginator.GetDisplayRange(categoryTable.Rows.Count); // Get the display range for the current page
-            lblCurrentCategoryPage.Text = paginator.CurrentPage.ToString(); // Update the current page label
+            var (start, end) = paginationHelper.GetDisplayRange(categoryTable.Rows.Count); // Get the display range for the current page
+            lblCurrentCategoryPage.Text = paginationHelper.CurrentPage.ToString(); // Update the current page label
             lblCategoryPageInfo.Text = $"Showing {start} to {end} of {categoryTable.Rows.Count} entries"; // Update the label with the display range information
 
         }
@@ -231,7 +136,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
                 if (string.IsNullOrEmpty(filterText))
                 {
                     dgvCategory.DataSource = categoryTable;
-                    ApplyRowLimit(cbCategoryEntries, categoryTable, dgvCategory, lblCategoryPageInfo); // Reset to the full category list when the search box is empty
+                    paginationHelper.ApplyRowLimit(cbCategoryEntries, categoryTable, dgvCategory, lblCategoryPageInfo); // Reset to the full category list when the search box is empty
                 }
                 else
                 {
@@ -244,17 +149,17 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
         private void cbCategoryEntries_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ApplyRowLimit(cbCategoryEntries, categoryTable, dgvCategory, lblCategoryPageInfo); // Apply the row limit based on the selected value in the combo box
+            paginationHelper.ApplyRowLimit(cbCategoryEntries, categoryTable, dgvCategory, lblCategoryPageInfo); // Apply the row limit based on the selected value in the combo box
         }
 
         private void btnCategoryPrev_Click(object sender, EventArgs e)
         {
-            int next = paginator.CurrentPage - 1;
-            DataTable nextPage = paginator.GetPage(categoryTable, next);
+            int next = paginationHelper.CurrentPage - 1;
+            DataTable nextPage = paginationHelper.GetPage(categoryTable, next);
             dgvCategory.DataSource = nextPage;
 
-            var (start, end) = paginator.GetDisplayRange(categoryTable.Rows.Count);
-            lblCurrentCategoryPage.Text = paginator.CurrentPage.ToString(); // Update the current page label
+            var (start, end) = paginationHelper.GetDisplayRange(categoryTable.Rows.Count);
+            lblCurrentCategoryPage.Text = paginationHelper.CurrentPage.ToString(); // Update the current page label
             lblCategoryPageInfo.Text = $"Showing {start} to {end} of {categoryTable.Rows.Count} entries";
 
 
@@ -262,12 +167,12 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
         private void btnCategoryNext_Click(object sender, EventArgs e)
         {
-            int next = paginator.CurrentPage + 1;
-            DataTable nextPage = paginator.GetPage(categoryTable, next);
+            int next = paginationHelper.CurrentPage + 1;
+            DataTable nextPage = paginationHelper.GetPage(categoryTable, next);
             dgvCategory.DataSource = nextPage;
 
-            var (start, end) = paginator.GetDisplayRange(categoryTable.Rows.Count);
-            lblCurrentCategoryPage.Text = paginator.CurrentPage.ToString(); // Update the current page label
+            var (start, end) = paginationHelper.GetDisplayRange(categoryTable.Rows.Count);
+            lblCurrentCategoryPage.Text = paginationHelper.CurrentPage.ToString(); // Update the current page label
             lblCategoryPageInfo.Text = $"Showing {start} to {end} of {categoryTable.Rows.Count} entries";
         }
 
@@ -315,16 +220,16 @@ namespace Tindahan_ni_Chin_Chin.Controls
         {
             vendorTable = await Database.DBVendors.GetVendorListAsync(); // Returns a DataTable
             dgvVendor.DataSource = vendorTable; // Refresh the vendor list in the DataGridView
-            ApplyRowLimit(cbVendorEntries, vendorTable, dgvVendor, lblPageInfo); // Reset the row limit based on the selected value in the combo box
+            paginationHelper.ApplyRowLimit(cbVendorEntries, vendorTable, dgvVendor, lblPageInfo); // Reset the row limit based on the selected value in the combo box
         }
 
         private void btnVendorPrev_Click(object sender, EventArgs e)
         {
-            var prevPage = paginator.GetPage(vendorTable, paginator.CurrentPage - 1);
+            var prevPage = paginationHelper.GetPage(vendorTable, paginationHelper.CurrentPage - 1);
             dgvVendor.DataSource = prevPage;
 
-            var (start, end) = paginator.GetDisplayRange(vendorTable.Rows.Count);
-            lblVendorCurrentPage.Text = paginator.CurrentPage.ToString(); // Update the current page label
+            var (start, end) = paginationHelper.GetDisplayRange(vendorTable.Rows.Count);
+            lblVendorCurrentPage.Text = paginationHelper.CurrentPage.ToString(); // Update the current page label
             lblPageInfo.Text = $"Showing {start} to {end} of {vendorTable.Rows.Count} entries";
 
 
@@ -332,13 +237,13 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
         private void btnVendorNext_Click(object sender, EventArgs e)
         {
-            if (paginator.CurrentPage < paginator.TotalPages)
+            if (paginationHelper.CurrentPage < paginationHelper.TotalPages)
             {
-                var nextPage = paginator.GetPage(vendorTable, paginator.CurrentPage + 1);
-                var (start, end) = paginator.GetDisplayRange(vendorTable.Rows.Count);
+                var nextPage = paginationHelper.GetPage(vendorTable, paginationHelper.CurrentPage + 1);
+                var (start, end) = paginationHelper.GetDisplayRange(vendorTable.Rows.Count);
                 dgvVendor.DataSource = nextPage; // Set the DataGridView's data source to the next page of data
 
-                lblVendorCurrentPage.Text = paginator.CurrentPage.ToString(); // Update the current page label
+                lblVendorCurrentPage.Text = paginationHelper.CurrentPage.ToString(); // Update the current page label
                 lblPageInfo.Text = $"Showing {start} to {end} of {vendorTable.Rows.Count} entries";
             }
         }
@@ -352,14 +257,14 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
             if (int.TryParse(selected, out int rowLimit))
             {
-                paginator.SetPageSize(rowLimit, vendorTable.Rows.Count); // Set the page size based on the selected value
+                paginationHelper.SetPageSize(rowLimit, vendorTable.Rows.Count); // Set the page size based on the selected value
             }
 
-            var page = paginator.GetPage(vendorTable, 1); // Get the initial page of data
+            var page = paginationHelper.GetPage(vendorTable, 1); // Get the initial page of data
             dgvVendor.DataSource = page; // Set the DataGridView's data source to the paginated data
 
-            var (start, end) = paginator.GetDisplayRange(vendorTable.Rows.Count); // Get the display range for the current page
-            lblVendorCurrentPage.Text = paginator.CurrentPage.ToString(); // Update the current page label
+            var (start, end) = paginationHelper.GetDisplayRange(vendorTable.Rows.Count); // Get the display range for the current page
+            lblVendorCurrentPage.Text = paginationHelper.CurrentPage.ToString(); // Update the current page label
             lblPageInfo.Text = $"Showing {start} to {end} of {vendorTable.Rows.Count} entries"; // Update the label with the display range information
         }
 
@@ -372,7 +277,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
                 if (string.IsNullOrEmpty(filterText))
                 {
                     dgvVendor.DataSource = vendorTable;
-                    ApplyRowLimit(cbVendorEntries, vendorTable, dgvVendor, lblPageInfo); // Reset to the full vendor list when the search box is empty
+                    paginationHelper.ApplyRowLimit(cbVendorEntries, vendorTable, dgvVendor, lblPageInfo); // Reset to the full vendor list when the search box is empty
                 }
                 else
                 {
@@ -385,7 +290,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
         private void cbVendorEntries_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ApplyRowLimit(cbVendorEntries, vendorTable, dgvVendor, lblPageInfo); // Apply the row limit based on the selected value in the combo box
+            paginationHelper.ApplyRowLimit(cbVendorEntries, vendorTable, dgvVendor, lblPageInfo); // Apply the row limit based on the selected value in the combo box
         }
 
         private void dgvVendor_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

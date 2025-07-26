@@ -38,9 +38,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControlAdv1 = new Syncfusion.Windows.Forms.Tools.TabControlAdv();
             this.tabProduct = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
-            this.tabVendor = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
-            this.tabCategory = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
-            this.tabStock = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.dgvProduct = new System.Windows.Forms.DataGridView();
@@ -65,6 +62,8 @@
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.btnRefreshProduct = new System.Windows.Forms.Button();
             this.btnAddProduct = new System.Windows.Forms.Button();
+            this.tabVendor = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
+            this.tabCategory = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgvCategory = new System.Windows.Forms.DataGridView();
@@ -89,6 +88,7 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnRefreshCategory = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.tabStock = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
             this.dgvVendor = new System.Windows.Forms.DataGridView();
@@ -117,7 +117,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tabControlAdv1)).BeginInit();
             this.tabControlAdv1.SuspendLayout();
             this.tabProduct.SuspendLayout();
-            this.tabCategory.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).BeginInit();
@@ -131,6 +130,7 @@
             this.panel16.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
+            this.tabCategory.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).BeginInit();
@@ -206,43 +206,6 @@
             this.tabProduct.TabIndex = 1;
             this.tabProduct.Text = "Product";
             this.tabProduct.ThemesEnabled = false;
-            // 
-            // tabVendor
-            // 
-            this.tabVendor.Image = null;
-            this.tabVendor.ImageSize = new System.Drawing.Size(16, 16);
-            this.tabVendor.Location = new System.Drawing.Point(0, 28);
-            this.tabVendor.Name = "tabVendor";
-            this.tabVendor.ShowCloseButton = false;
-            this.tabVendor.Size = new System.Drawing.Size(1082, 645);
-            this.tabVendor.TabIndex = 3;
-            this.tabVendor.Text = "Vendor";
-            this.tabVendor.ThemesEnabled = false;
-            // 
-            // tabCategory
-            // 
-            this.tabCategory.Controls.Add(this.panel2);
-            this.tabCategory.Image = null;
-            this.tabCategory.ImageSize = new System.Drawing.Size(16, 16);
-            this.tabCategory.Location = new System.Drawing.Point(0, 28);
-            this.tabCategory.Name = "tabCategory";
-            this.tabCategory.ShowCloseButton = false;
-            this.tabCategory.Size = new System.Drawing.Size(1082, 645);
-            this.tabCategory.TabIndex = 2;
-            this.tabCategory.Text = "Category";
-            this.tabCategory.ThemesEnabled = false;
-            // 
-            // tabStock
-            // 
-            this.tabStock.Image = null;
-            this.tabStock.ImageSize = new System.Drawing.Size(16, 16);
-            this.tabStock.Location = new System.Drawing.Point(0, 28);
-            this.tabStock.Name = "tabStock";
-            this.tabStock.ShowCloseButton = false;
-            this.tabStock.Size = new System.Drawing.Size(1082, 645);
-            this.tabStock.TabIndex = 4;
-            this.tabStock.Text = "Stock Adjustment";
-            this.tabStock.ThemesEnabled = false;
             // 
             // panel7
             // 
@@ -486,7 +449,7 @@
             // 
             // txtSearchProduct
             // 
-            this.txtSearchProduct.BeforeTouchSize = new System.Drawing.Size(181, 20);
+            this.txtSearchProduct.BeforeTouchSize = new System.Drawing.Size(181, 27);
             this.txtSearchProduct.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearchProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtSearchProduct.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
@@ -570,6 +533,31 @@
             this.btnAddProduct.Size = new System.Drawing.Size(53, 42);
             this.btnAddProduct.TabIndex = 0;
             this.btnAddProduct.UseVisualStyleBackColor = false;
+            // 
+            // tabVendor
+            // 
+            this.tabVendor.Image = null;
+            this.tabVendor.ImageSize = new System.Drawing.Size(16, 16);
+            this.tabVendor.Location = new System.Drawing.Point(0, 28);
+            this.tabVendor.Name = "tabVendor";
+            this.tabVendor.ShowCloseButton = false;
+            this.tabVendor.Size = new System.Drawing.Size(1082, 645);
+            this.tabVendor.TabIndex = 3;
+            this.tabVendor.Text = "Vendor";
+            this.tabVendor.ThemesEnabled = false;
+            // 
+            // tabCategory
+            // 
+            this.tabCategory.Controls.Add(this.panel2);
+            this.tabCategory.Image = null;
+            this.tabCategory.ImageSize = new System.Drawing.Size(16, 16);
+            this.tabCategory.Location = new System.Drawing.Point(0, 28);
+            this.tabCategory.Name = "tabCategory";
+            this.tabCategory.ShowCloseButton = false;
+            this.tabCategory.Size = new System.Drawing.Size(1082, 645);
+            this.tabCategory.TabIndex = 2;
+            this.tabCategory.Text = "Category";
+            this.tabCategory.ThemesEnabled = false;
             // 
             // panel2
             // 
@@ -813,7 +801,7 @@
             // 
             // txtSearchCategory
             // 
-            this.txtSearchCategory.BeforeTouchSize = new System.Drawing.Size(181, 20);
+            this.txtSearchCategory.BeforeTouchSize = new System.Drawing.Size(181, 27);
             this.txtSearchCategory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearchCategory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtSearchCategory.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
@@ -897,6 +885,18 @@
             this.button4.Size = new System.Drawing.Size(53, 42);
             this.button4.TabIndex = 0;
             this.button4.UseVisualStyleBackColor = false;
+            // 
+            // tabStock
+            // 
+            this.tabStock.Image = null;
+            this.tabStock.ImageSize = new System.Drawing.Size(16, 16);
+            this.tabStock.Location = new System.Drawing.Point(0, 28);
+            this.tabStock.Name = "tabStock";
+            this.tabStock.ShowCloseButton = false;
+            this.tabStock.Size = new System.Drawing.Size(1082, 645);
+            this.tabStock.TabIndex = 4;
+            this.tabStock.Text = "Stock Adjustment";
+            this.tabStock.ThemesEnabled = false;
             // 
             // panel11
             // 
@@ -1140,7 +1140,7 @@
             // 
             // txtSearchVendor
             // 
-            this.txtSearchVendor.BeforeTouchSize = new System.Drawing.Size(181, 20);
+            this.txtSearchVendor.BeforeTouchSize = new System.Drawing.Size(181, 27);
             this.txtSearchVendor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearchVendor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtSearchVendor.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
@@ -1238,7 +1238,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tabControlAdv1)).EndInit();
             this.tabControlAdv1.ResumeLayout(false);
             this.tabProduct.ResumeLayout(false);
-            this.tabCategory.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).EndInit();
@@ -1257,6 +1256,7 @@
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
             this.tableLayoutPanel8.ResumeLayout(false);
+            this.tabCategory.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).EndInit();

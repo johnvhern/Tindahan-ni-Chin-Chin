@@ -172,6 +172,7 @@
             this.btnVendorPrev.Size = new System.Drawing.Size(41, 32);
             this.btnVendorPrev.TabIndex = 0;
             this.btnVendorPrev.UseVisualStyleBackColor = false;
+            this.btnVendorPrev.Click += new System.EventHandler(this.btnVendorPrev_Click);
             // 
             // btnVendorNext
             // 
@@ -186,6 +187,7 @@
             this.btnVendorNext.Size = new System.Drawing.Size(44, 32);
             this.btnVendorNext.TabIndex = 1;
             this.btnVendorNext.UseVisualStyleBackColor = false;
+            this.btnVendorNext.Click += new System.EventHandler(this.btnVendorNext_Click);
             // 
             // lblVendorCurrentPage
             // 
@@ -271,6 +273,7 @@
             this.cbVendorEntries.Name = "cbVendorEntries";
             this.cbVendorEntries.Size = new System.Drawing.Size(49, 23);
             this.cbVendorEntries.TabIndex = 3;
+            this.cbVendorEntries.SelectedIndexChanged += new System.EventHandler(this.cbVendorEntries_SelectedIndexChanged);
             // 
             // label27
             // 
@@ -320,6 +323,7 @@
             this.txtSearchVendor.Name = "txtSearchVendor";
             this.txtSearchVendor.Size = new System.Drawing.Size(181, 27);
             this.txtSearchVendor.TabIndex = 3;
+            this.txtSearchVendor.TextChanged += new System.EventHandler(this.txtSearchVendor_TextChanged);
             // 
             // panel15
             // 
@@ -383,6 +387,7 @@
             this.btnVendorRefresh.Size = new System.Drawing.Size(53, 42);
             this.btnVendorRefresh.TabIndex = 1;
             this.btnVendorRefresh.UseVisualStyleBackColor = false;
+            this.btnVendorRefresh.Click += new System.EventHandler(this.btnVendorRefresh_Click);
             // 
             // btnAddVendor
             // 
@@ -396,6 +401,7 @@
             this.btnAddVendor.Size = new System.Drawing.Size(53, 42);
             this.btnAddVendor.TabIndex = 0;
             this.btnAddVendor.UseVisualStyleBackColor = false;
+            this.btnAddVendor.Click += new System.EventHandler(this.btnAddVendor_Click);
             // 
             // VendorsUC
             // 
@@ -406,6 +412,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "VendorsUC";
             this.Size = new System.Drawing.Size(1080, 619);
+            this.Load += new System.EventHandler(this.VendorsUC_Load);
             this.panel11.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVendor)).EndInit();

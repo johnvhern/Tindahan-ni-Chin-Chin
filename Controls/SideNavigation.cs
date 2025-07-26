@@ -38,7 +38,6 @@ namespace Tindahan_ni_Chin_Chin.Controls
         {
             txtUser.Text = UserSession.Username; // Set the username from the session
             ColorActiveButton(btnDashboard);
-            flowLayoutPanel1.HorizontalScroll.Enabled = false; // Disable vertical scrolling
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
