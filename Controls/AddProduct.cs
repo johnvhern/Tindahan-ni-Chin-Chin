@@ -37,13 +37,12 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
         private void txtProductVendor_Click(object sender, EventArgs e)
         {
-
             var productVendor = new ProductVendorSelection();
 
             productVendor.OnSelectedVendor += () => // Subscribe to the OnCategoryAdded event
             {
                 txtProductVendor.Text = productVendor.selectedProductVendor; // Update the text box with the selected category name
-                selectedCategoryId = productVendor.selectedVendorId; // Store the selected category ID
+                selectedVendorId = productVendor.selectedVendorId; // Store the selected category ID
             };
 
             Forms.LookupForm productVendorForm = new Forms.LookupForm();
@@ -57,34 +56,47 @@ namespace Tindahan_ni_Chin_Chin.Controls
         {
             try
             {
-                //string vendorName = txtVendorName.Text.Trim();
-                //string vendorContact = txtVendorContactNumber.Text.Trim();
+                string productName = txtProductName.Text.Trim();
+                string productPrice = txtProductPrice.Text.Trim();
+                string productStock = txtProductStock.Text.Trim();
+                string productCategory = txtProductCategory.Text.Trim();
+                string productVendor = txtProductVendor.Text.Trim();
 
-                //if (string.IsNullOrEmpty(vendorName) || string.IsNullOrEmpty(vendorContact))
-                //{
-                //    messageBoxStyle(); // Apply custom message box style
-                //    MessageBoxAdv.Show(this, "Please fill in all fields.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    return;
-                //}
-                //else
-                //{
-                //    using (var conn = Database.DatabaseCreation.GetConnection())
-                //    {
-                //        string insertVendorQuery = @"INSERT INTO vendor (vendor_name, vendor_contact_number) VALUES (@vendor_name, @vendor_contact_number);";
+                if (string.IsNullOrEmpty(productName) || string.IsNullOrEmpty(productPrice) || string.IsNullOrEmpty(productCategory) || string.IsNullOrEmpty(productVendor) || string.IsNullOrEmpty(productStock))
+                {
+                    messageBoxStyle(); // Apply custom message box style
+                    MessageBoxAdv.Show(this, "Please fill in all fields.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    using (var conn = Database.DatabaseCreation.GetConnection())
+                    {
+                        double price = double.Parse(productPrice);
+                        int finalPrice = (int)(price * 100); // Convert price to cents for storage
+                        int stock = Int32.Parse(productStock);
+                        int category = Int32.Parse(selectedCategoryId);
+                        int vendor = Int32.Parse(selectedVendorId);
 
-                //        using (var cmd = new SQLiteCommand(insertVendorQuery, conn))
-                //        {
-                //            cmd.Parameters.AddWithValue("@vendor_name", vendorName);
-                //            cmd.Parameters.AddWithValue("@vendor_contact_number", vendorContact);
-                //            cmd.ExecuteNonQuery();
-                //            messageBoxStyle(); // Apply custom message box style
-                //            MessageBoxAdv.Show(this, "Vendor added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                        string insertVendorQuery = @"INSERT INTO product (product_name, product_category, product_vendor, product_price, product_stock) VALUES (@product_name, @product_category, @product_vendor, @product_price, @product_stock);";
 
-                //            OnVendorAdded?.Invoke(); // Notify parent form that a vendor has been added
-                //            this.ParentForm.Close(); // Close the parent form (AddForm) after successful addition
-                //        }
-                //    }
-                //}
+                        using (var cmd = new SQLiteCommand(insertVendorQuery, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@product_name", productName);
+                            cmd.Parameters.AddWithValue("@product_category", category);
+                            cmd.Parameters.AddWithValue("@product_vendor", vendor); // Use the selected vendor ID
+                            cmd.Parameters.AddWithValue("@product_price", finalPrice);
+                            cmd.Parameters.AddWithValue("@product_stock", stock);
+
+                            cmd.ExecuteNonQuery();
+                            messageBoxStyle(); // Apply custom message box style
+                            MessageBoxAdv.Show(this, "Product added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Question);
+
+                            OnProductAdded?.Invoke(); // Notify parent form that a vendor has been added
+                            this.ParentForm.Close(); // Close the parent form (AddForm) after successful addition
+                        }
+                    }
+                }
             }
             catch (SQLiteException ex)
             {

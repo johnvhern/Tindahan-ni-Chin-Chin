@@ -83,7 +83,17 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
         private void dgvProduct_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-
+            if (dgvProduct.Columns[e.ColumnIndex].Name == "Price" && e.Value != null)
+            {
+                int priceCentavos = Convert.ToInt32(e.Value);
+                double pricePesos = priceCentavos / 100.0;
+                e.Value = pricePesos.ToString("F2"); // formats as 100.00
+                e.FormattingApplied = true;
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }

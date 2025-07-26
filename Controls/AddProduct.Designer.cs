@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Syncfusion.Windows.Forms.BannerTextInfo bannerTextInfo1 = new Syncfusion.Windows.Forms.BannerTextInfo();
-            Syncfusion.Windows.Forms.BannerTextInfo bannerTextInfo2 = new Syncfusion.Windows.Forms.BannerTextInfo();
+            Syncfusion.Windows.Forms.BannerTextInfo bannerTextInfo3 = new Syncfusion.Windows.Forms.BannerTextInfo();
+            Syncfusion.Windows.Forms.BannerTextInfo bannerTextInfo4 = new Syncfusion.Windows.Forms.BannerTextInfo();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -102,6 +102,7 @@
             this.btnAdd.TabIndex = 6;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -152,9 +153,9 @@
             // 
             // txtProductVendor
             // 
-            bannerTextInfo1.Text = "Click to select vendor";
-            bannerTextInfo1.Visible = true;
-            this.bannerTextProvider1.SetBannerText(this.txtProductVendor, bannerTextInfo1);
+            bannerTextInfo3.Text = "Click to select vendor";
+            bannerTextInfo3.Visible = true;
+            this.bannerTextProvider1.SetBannerText(this.txtProductVendor, bannerTextInfo3);
             this.txtProductVendor.BeforeTouchSize = new System.Drawing.Size(341, 30);
             this.txtProductVendor.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.txtProductVendor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -175,9 +176,9 @@
             // 
             // txtProductCategory
             // 
-            bannerTextInfo2.Text = "Click to select category";
-            bannerTextInfo2.Visible = true;
-            this.bannerTextProvider1.SetBannerText(this.txtProductCategory, bannerTextInfo2);
+            bannerTextInfo4.Text = "Click to select category";
+            bannerTextInfo4.Visible = true;
+            this.bannerTextProvider1.SetBannerText(this.txtProductCategory, bannerTextInfo4);
             this.txtProductCategory.BeforeTouchSize = new System.Drawing.Size(341, 30);
             this.txtProductCategory.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.txtProductCategory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
