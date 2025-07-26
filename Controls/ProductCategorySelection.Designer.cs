@@ -42,7 +42,7 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.txtVendorSearch = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.txtSearchCategory = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             this.bannerTextProvider1 = new Syncfusion.Windows.Forms.BannerTextProvider(this.components);
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -53,7 +53,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelectedCategory)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtVendorSearch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearchCategory)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -72,7 +72,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtVendorSearch, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txtSearchCategory, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -231,30 +231,31 @@
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // txtVendorSearch
+            // txtSearchCategory
             // 
-            this.txtVendorSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtSearchCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             bannerTextInfo1.Text = "Search category...";
             bannerTextInfo1.Visible = true;
-            this.bannerTextProvider1.SetBannerText(this.txtVendorSearch, bannerTextInfo1);
-            this.txtVendorSearch.BeforeTouchSize = new System.Drawing.Size(237, 27);
-            this.txtVendorSearch.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
-            this.txtVendorSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtVendorSearch.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.txtVendorSearch.Location = new System.Drawing.Point(13, 41);
-            this.txtVendorSearch.Margin = new System.Windows.Forms.Padding(13, 3, 3, 3);
-            this.txtVendorSearch.Name = "txtVendorSearch";
-            this.txtVendorSearch.Size = new System.Drawing.Size(237, 27);
-            this.txtVendorSearch.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
-            this.txtVendorSearch.TabIndex = 2;
-            this.txtVendorSearch.ThemeName = "Metro";
-            this.txtVendorSearch.UseBorderColorOnFocus = true;
-            this.txtVendorSearch.TextChanged += new System.EventHandler(this.txtCategorySearch_TextChanged);
+            this.bannerTextProvider1.SetBannerText(this.txtSearchCategory, bannerTextInfo1);
+            this.txtSearchCategory.BeforeTouchSize = new System.Drawing.Size(237, 27);
+            this.txtSearchCategory.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
+            this.txtSearchCategory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSearchCategory.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.txtSearchCategory.Location = new System.Drawing.Point(13, 41);
+            this.txtSearchCategory.Margin = new System.Windows.Forms.Padding(13, 3, 3, 3);
+            this.txtSearchCategory.Name = "txtSearchCategory";
+            this.txtSearchCategory.Size = new System.Drawing.Size(237, 27);
+            this.txtSearchCategory.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
+            this.txtSearchCategory.TabIndex = 2;
+            this.txtSearchCategory.ThemeName = "Metro";
+            this.txtSearchCategory.UseBorderColorOnFocus = true;
+            this.txtSearchCategory.TextChanged += new System.EventHandler(this.txtCategorySearch_TextChanged);
             // 
             // ProductCategorySelection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -271,7 +272,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelectedCategory)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtVendorSearch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearchCategory)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -286,7 +287,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAdd;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtVendorSearch;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtSearchCategory;
         private Syncfusion.Windows.Forms.BannerTextProvider bannerTextProvider1;
     }
 }

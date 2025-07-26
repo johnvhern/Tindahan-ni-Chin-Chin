@@ -32,7 +32,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
             dgvProductVendor.Columns.Add(buttonColumn);
         }
 
-        private void dgvProductCategory_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvProductVendor_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
             DataTable selectedVendor = new DataTable();
@@ -45,12 +45,12 @@ namespace Tindahan_ni_Chin_Chin.Controls
                 DataGridViewRow selectedRow = dgvProductVendor.Rows[e.RowIndex];
 
 
-                string categoryId = selectedRow.Cells["#"].Value.ToString();
-                string categoryName = selectedRow.Cells["Name"].Value.ToString();
+                string vendorId = selectedRow.Cells["#"].Value.ToString();
+                string vendorName = selectedRow.Cells["Name"].Value.ToString();
 
                 if (dgvSelectedVendor.Rows.Count <= 0)
                 {
-                    selectedVendor.Rows.Add(categoryId, categoryName);
+                    selectedVendor.Rows.Add(vendorId, vendorName);
 
                     dgvSelectedVendor.DataSource = null;
                     dgvSelectedVendor.DataSource = selectedVendor;
@@ -74,7 +74,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
         }
 
-        private void dgvSelectedCategory_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvSelectedVendor_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
             DataTable removeSelectedRow = new DataTable();
@@ -152,6 +152,10 @@ namespace Tindahan_ni_Chin_Chin.Controls
                         selectedVendorId = string.Empty; // Reset selected category ID
                         selectedProductVendor = string.Empty; // Reset selected category name
                     }
+                }
+                else
+                {
+                    this.ParentForm.Close(); // Close the parent form (AddForm) without any action
                 }
 
             }

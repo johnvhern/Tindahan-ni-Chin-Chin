@@ -148,6 +148,10 @@ namespace Tindahan_ni_Chin_Chin.Controls
                         selectedCategoryName = string.Empty; // Reset selected category name
                     }
                 }
+                else
+                {
+                    this.ParentForm.Close(); // Close the parent form (AddForm) without any action
+                }
 
             }
             catch (Exception ex)
@@ -160,7 +164,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
         {
             DataTable categoryTable = Database.DBCategory.getCategoryList().Result; // Fetch the category list asynchronously
 
-            string filterText = txtVendorSearch.Text.Trim().Replace("'", "''"); // Prevent SQL injection-like issues
+            string filterText = txtSearchCategory.Text.Trim().Replace("'", "''"); // Prevent SQL injection-like issues
 
             if (categoryTable != null)
             {

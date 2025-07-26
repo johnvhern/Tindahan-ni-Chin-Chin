@@ -34,6 +34,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             Syncfusion.Windows.Forms.BannerTextInfo bannerTextInfo1 = new Syncfusion.Windows.Forms.BannerTextInfo();
+            this.bannerTextProvider1 = new Syncfusion.Windows.Forms.BannerTextProvider(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvProductVendor = new System.Windows.Forms.DataGridView();
@@ -42,8 +44,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtSearchVendor = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.bannerTextProvider1 = new Syncfusion.Windows.Forms.BannerTextProvider(this.components);
+            this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -53,8 +54,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelectedVendor)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchVendor)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1096, 646);
+            this.panel1.TabIndex = 1;
             // 
             // tableLayoutPanel1
             // 
@@ -70,13 +80,13 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1127, 717);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1096, 646);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 74);
+            this.splitContainer1.Location = new System.Drawing.Point(3, 67);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -88,8 +98,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dgvSelectedVendor);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.splitContainer1.Size = new System.Drawing.Size(1121, 567);
-            this.splitContainer1.SplitterDistance = 576;
+            this.splitContainer1.Size = new System.Drawing.Size(1090, 510);
+            this.splitContainer1.SplitterDistance = 560;
             this.splitContainer1.TabIndex = 0;
             // 
             // dgvProductVendor
@@ -129,9 +139,9 @@
             this.dgvProductVendor.ReadOnly = true;
             this.dgvProductVendor.RowHeadersVisible = false;
             this.dgvProductVendor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProductVendor.Size = new System.Drawing.Size(556, 567);
+            this.dgvProductVendor.Size = new System.Drawing.Size(540, 510);
             this.dgvProductVendor.TabIndex = 2;
-            this.dgvProductVendor.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductCategory_CellContentClick);
+            this.dgvProductVendor.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductVendor_CellContentClick);
             // 
             // dgvSelectedVendor
             // 
@@ -170,9 +180,9 @@
             this.dgvSelectedVendor.ReadOnly = true;
             this.dgvSelectedVendor.RowHeadersVisible = false;
             this.dgvSelectedVendor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSelectedVendor.Size = new System.Drawing.Size(521, 567);
+            this.dgvSelectedVendor.Size = new System.Drawing.Size(506, 510);
             this.dgvSelectedVendor.TabIndex = 3;
-            this.dgvSelectedVendor.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSelectedCategory_CellContentClick);
+            this.dgvSelectedVendor.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSelectedVendor_CellContentClick);
             // 
             // tableLayoutPanel2
             // 
@@ -182,11 +192,11 @@
             this.tableLayoutPanel2.Controls.Add(this.btnCancel, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(924, 647);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(893, 583);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(200, 67);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(200, 60);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // btnCancel
@@ -197,7 +207,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(3, 27);
+            this.btnCancel.Location = new System.Drawing.Point(3, 20);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 37);
             this.btnCancel.TabIndex = 5;
@@ -213,7 +223,7 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(103, 27);
+            this.btnAdd.Location = new System.Drawing.Point(103, 20);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(94, 37);
             this.btnAdd.TabIndex = 6;
@@ -231,8 +241,7 @@
             this.txtSearchVendor.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.txtSearchVendor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearchVendor.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.txtSearchVendor.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchVendor.Location = new System.Drawing.Point(13, 41);
+            this.txtSearchVendor.Location = new System.Drawing.Point(13, 34);
             this.txtSearchVendor.Margin = new System.Windows.Forms.Padding(13, 3, 3, 3);
             this.txtSearchVendor.Name = "txtSearchVendor";
             this.txtSearchVendor.Size = new System.Drawing.Size(237, 27);
@@ -242,24 +251,18 @@
             this.txtSearchVendor.UseBorderColorOnFocus = true;
             this.txtSearchVendor.TextChanged += new System.EventHandler(this.txtSearchVendor_TextChanged);
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1127, 717);
-            this.panel1.TabIndex = 1;
-            // 
             // ProductVendorSelection
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ProductVendorSelection";
-            this.Size = new System.Drawing.Size(1127, 717);
+            this.Size = new System.Drawing.Size(1096, 646);
             this.Load += new System.EventHandler(this.ProductVendorSelection_Load);
+            this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -270,13 +273,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelectedVendor)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchVendor)).EndInit();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
+        private Syncfusion.Windows.Forms.BannerTextProvider bannerTextProvider1;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridView dgvProductVendor;
@@ -285,7 +288,5 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAdd;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtSearchVendor;
-        private Syncfusion.Windows.Forms.BannerTextProvider bannerTextProvider1;
-        private System.Windows.Forms.Panel panel1;
     }
 }

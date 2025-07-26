@@ -25,7 +25,6 @@ namespace Tindahan_ni_Chin_Chin.Controls
             productCategory.OnSelectedCategory += () => // Subscribe to the OnCategoryAdded event
             {
                 txtProductCategory.Text = productCategory.selectedCategoryName; // Update the text box with the selected category name
-                selectedCategoryName = productCategory.selectedCategoryName; // Store the selected category name
                 selectedCategoryId = productCategory.selectedCategoryId; // Store the selected category ID
             };
 
