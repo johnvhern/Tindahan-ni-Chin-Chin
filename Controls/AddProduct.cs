@@ -56,24 +56,30 @@ namespace Tindahan_ni_Chin_Chin.Controls
             try
             {
                 string productName = txtProductName.Text.Trim();
-                string productPrice = txtProductPrice.Text.Trim();
-                string productStock = txtProductStock.Text.Trim();
+                decimal productPrice = txtProductPrice.DecimalValue;
+                int productStock = Int32.Parse(txtProductStock.Text.Trim());
                 string productCategory = txtProductCategory.Text.Trim();
                 string productVendor = txtProductVendor.Text.Trim();
 
-                if (string.IsNullOrEmpty(productName) || string.IsNullOrEmpty(productPrice) || string.IsNullOrEmpty(productCategory) || string.IsNullOrEmpty(productVendor) || string.IsNullOrEmpty(productStock))
+                if (string.IsNullOrEmpty(productName) || string.IsNullOrEmpty(productCategory) || string.IsNullOrEmpty(productVendor))
                 {
                     messageBoxStyle(); // Apply custom message box style
                     MessageBoxAdv.Show(this, "Please fill in all fields.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
+                if (productPrice <= 0)
+                {
+                    messageBoxStyle(); // Apply custom message box style
+                    MessageBoxAdv.Show(this, "Please enter a valid product price greater than zero.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 else
                 {
                     using (var conn = Database.DatabaseCreation.GetConnection())
                     {
-                        double price = double.Parse(productPrice);
-                        int finalPrice = (int)(price * 100); // Convert price to cents for storage
-                        int stock = Int32.Parse(productStock);
+                        int finalPrice = (int)(productPrice * 100); // Convert decimal to integer cents
                         int category = Int32.Parse(selectedCategoryId);
                         int vendor = Int32.Parse(selectedVendorId);
 
@@ -85,7 +91,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
                             cmd.Parameters.AddWithValue("@product_category", category);
                             cmd.Parameters.AddWithValue("@product_vendor", vendor); // Use the selected vendor ID
                             cmd.Parameters.AddWithValue("@product_price", finalPrice);
-                            cmd.Parameters.AddWithValue("@product_stock", stock);
+                            cmd.Parameters.AddWithValue("@product_stock", productStock);
 
                             cmd.ExecuteNonQuery();
                             messageBoxStyle(); // Apply custom message box style

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Syncfusion.Windows.Forms.BannerTextInfo bannerTextInfo3 = new Syncfusion.Windows.Forms.BannerTextInfo();
-            Syncfusion.Windows.Forms.BannerTextInfo bannerTextInfo4 = new Syncfusion.Windows.Forms.BannerTextInfo();
+            Syncfusion.Windows.Forms.BannerTextInfo bannerTextInfo1 = new Syncfusion.Windows.Forms.BannerTextInfo();
+            Syncfusion.Windows.Forms.BannerTextInfo bannerTextInfo2 = new Syncfusion.Windows.Forms.BannerTextInfo();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -38,8 +38,6 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.txtProductVendor = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             this.txtProductCategory = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            this.txtProductStock = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            this.txtProductPrice = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             this.label1 = new System.Windows.Forms.Label();
             this.txtProductName = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,14 +45,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.bannerTextProvider1 = new Syncfusion.Windows.Forms.BannerTextProvider(this.components);
+            this.txtProductPrice = new Syncfusion.Windows.Forms.Tools.CurrencyTextBox();
+            this.txtProductStock = new Syncfusion.Windows.Forms.Tools.IntegerTextBox();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductVendor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductCategory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtProductStock)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtProductPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductStock)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -126,14 +126,14 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.txtProductVendor, 0, 5);
             this.tableLayoutPanel3.Controls.Add(this.txtProductCategory, 0, 3);
-            this.tableLayoutPanel3.Controls.Add(this.txtProductStock, 0, 9);
-            this.tableLayoutPanel3.Controls.Add(this.txtProductPrice, 0, 7);
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.txtProductName, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.label2, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.label3, 0, 4);
             this.tableLayoutPanel3.Controls.Add(this.label4, 0, 6);
             this.tableLayoutPanel3.Controls.Add(this.label5, 0, 8);
+            this.tableLayoutPanel3.Controls.Add(this.txtProductPrice, 0, 7);
+            this.tableLayoutPanel3.Controls.Add(this.txtProductStock, 0, 9);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -153,10 +153,10 @@
             // 
             // txtProductVendor
             // 
-            bannerTextInfo3.Text = "Click to select vendor";
-            bannerTextInfo3.Visible = true;
-            this.bannerTextProvider1.SetBannerText(this.txtProductVendor, bannerTextInfo3);
-            this.txtProductVendor.BeforeTouchSize = new System.Drawing.Size(341, 30);
+            bannerTextInfo1.Text = "Click to select vendor";
+            bannerTextInfo1.Visible = true;
+            this.bannerTextProvider1.SetBannerText(this.txtProductVendor, bannerTextInfo1);
+            this.txtProductVendor.BeforeTouchSize = new System.Drawing.Size(341, 29);
             this.txtProductVendor.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.txtProductVendor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtProductVendor.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -176,10 +176,10 @@
             // 
             // txtProductCategory
             // 
-            bannerTextInfo4.Text = "Click to select category";
-            bannerTextInfo4.Visible = true;
-            this.bannerTextProvider1.SetBannerText(this.txtProductCategory, bannerTextInfo4);
-            this.txtProductCategory.BeforeTouchSize = new System.Drawing.Size(341, 30);
+            bannerTextInfo2.Text = "Click to select category";
+            bannerTextInfo2.Visible = true;
+            this.bannerTextProvider1.SetBannerText(this.txtProductCategory, bannerTextInfo2);
+            this.txtProductCategory.BeforeTouchSize = new System.Drawing.Size(341, 29);
             this.txtProductCategory.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.txtProductCategory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtProductCategory.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -197,42 +197,6 @@
             this.txtProductCategory.WordWrap = false;
             this.txtProductCategory.Click += new System.EventHandler(this.txtProductCategory_Click);
             // 
-            // txtProductStock
-            // 
-            this.txtProductStock.BeforeTouchSize = new System.Drawing.Size(341, 30);
-            this.txtProductStock.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
-            this.txtProductStock.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtProductStock.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtProductStock.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.txtProductStock.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductStock.Location = new System.Drawing.Point(3, 336);
-            this.txtProductStock.MinimumSize = new System.Drawing.Size(4, 30);
-            this.txtProductStock.Name = "txtProductStock";
-            this.txtProductStock.Size = new System.Drawing.Size(341, 30);
-            this.txtProductStock.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
-            this.txtProductStock.TabIndex = 4;
-            this.txtProductStock.ThemeName = "Metro";
-            this.txtProductStock.UseBorderColorOnFocus = true;
-            this.txtProductStock.WordWrap = false;
-            // 
-            // txtProductPrice
-            // 
-            this.txtProductPrice.BeforeTouchSize = new System.Drawing.Size(341, 30);
-            this.txtProductPrice.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
-            this.txtProductPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtProductPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtProductPrice.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.txtProductPrice.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductPrice.Location = new System.Drawing.Point(3, 262);
-            this.txtProductPrice.MinimumSize = new System.Drawing.Size(4, 30);
-            this.txtProductPrice.Name = "txtProductPrice";
-            this.txtProductPrice.Size = new System.Drawing.Size(341, 30);
-            this.txtProductPrice.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
-            this.txtProductPrice.TabIndex = 3;
-            this.txtProductPrice.ThemeName = "Metro";
-            this.txtProductPrice.UseBorderColorOnFocus = true;
-            this.txtProductPrice.WordWrap = false;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -247,7 +211,7 @@
             // 
             // txtProductName
             // 
-            this.txtProductName.BeforeTouchSize = new System.Drawing.Size(341, 30);
+            this.txtProductName.BeforeTouchSize = new System.Drawing.Size(341, 29);
             this.txtProductName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.txtProductName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtProductName.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -311,6 +275,43 @@
             this.label5.Text = "Stock";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtProductPrice
+            // 
+            this.txtProductPrice.AccessibilityEnabled = true;
+            this.txtProductPrice.BeforeTouchSize = new System.Drawing.Size(341, 29);
+            this.txtProductPrice.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
+            this.txtProductPrice.DecimalValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
+            this.txtProductPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtProductPrice.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.txtProductPrice.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductPrice.Location = new System.Drawing.Point(3, 262);
+            this.txtProductPrice.Name = "txtProductPrice";
+            this.txtProductPrice.Size = new System.Drawing.Size(341, 29);
+            this.txtProductPrice.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
+            this.txtProductPrice.TabIndex = 3;
+            this.txtProductPrice.Text = "₱0.00";
+            this.txtProductPrice.ThemeName = "Metro";
+            this.txtProductPrice.UseBorderColorOnFocus = true;
+            // 
+            // txtProductStock
+            // 
+            this.txtProductStock.AccessibilityEnabled = true;
+            this.txtProductStock.BeforeTouchSize = new System.Drawing.Size(341, 29);
+            this.txtProductStock.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtProductStock.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.txtProductStock.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductStock.IntegerValue = ((long)(0));
+            this.txtProductStock.Location = new System.Drawing.Point(3, 336);
+            this.txtProductStock.Name = "txtProductStock";
+            this.txtProductStock.Size = new System.Drawing.Size(341, 29);
+            this.txtProductStock.TabIndex = 13;
+            this.txtProductStock.Text = "0";
+            this.txtProductStock.UseBorderColorOnFocus = true;
+            // 
             // AddProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,9 +325,9 @@
             this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductVendor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductCategory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtProductStock)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtProductPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductStock)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -343,10 +344,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtProductPrice;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtProductStock;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtProductVendor;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtProductCategory;
         private Syncfusion.Windows.Forms.BannerTextProvider bannerTextProvider1;
+        private Syncfusion.Windows.Forms.Tools.CurrencyTextBox txtProductPrice;
+        private Syncfusion.Windows.Forms.Tools.IntegerTextBox txtProductStock;
     }
 }
