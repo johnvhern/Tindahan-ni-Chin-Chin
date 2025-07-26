@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tindahan_ni_Chin_Chin.Database
 {
     internal class DatabaseCreation
     {
         public static string dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "pos.db");
-        public static string connectionString = $"Data Source={dbPath}; Version=3; PRAGMA journal_mode = WAL; New = True; Compress = True; Connection Timeout=0";
+        public static string connectionString = $"Data Source={dbPath}; Version=3; PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON; New = True; Compress = True; Connection Timeout=0";
         public static void InitializeDatabase()
         {
             // Create the database file if it does not exist
@@ -46,7 +42,7 @@ namespace Tindahan_ni_Chin_Chin.Database
                     product_name TEXT NOT NULL,
                     product_category INTEGER NOT NULL,
                     product_vendor INTEGER NOT NULL,
-                    product_price TEXT NOT NULL,
+                    product_price INTEGER NOT NULL,
                     product_stock INTEGER NOT NULL DEFAULT 0,
                     FOREIGN KEY(product_category) REFERENCES category(category_id),
                     FOREIGN KEY(product_vendor) REFERENCES vendor(vendor_id));"
@@ -105,6 +101,39 @@ namespace Tindahan_ni_Chin_Chin.Database
         //        }
         //    }
         //}
+
+        public static void addProduct()
+        {
+            string productName = "Hotdog";
+            int productCategory = 1; // Assuming category_id 1 exists
+            int productVendor = 1; // Assuming vendor_id 1 exists
+            string productPrice = "100.00";
+            int productStock = 10;
+
+            using (var conn = GetConnection())
+            {
+                string insertQuery = "INSERT INTO product (product_name, product_category, product_vendor, product_price, product_stock) " +
+                                     "VALUES (@productName, @productCategory, @productVendor, @productPrice, @productStock)";
+
+                using (var cmd = new SQLiteCommand(insertQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@productName", productName);
+                    cmd.Parameters.AddWithValue("@productCategory", productCategory);
+                    cmd.Parameters.AddWithValue("@productVendor", productVendor);
+                    cmd.Parameters.AddWithValue("@productPrice", productPrice);
+                    cmd.Parameters.AddWithValue("@productStock", productStock);
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        Console.WriteLine("Product added successfully");
+                    }
+                    catch (SQLiteException ex)
+                    {
+                        Console.WriteLine("Error inserting product, error: " + ex.Message);
+                    }
+                }
+            }
+        }
 
         public static SQLiteConnection GetConnection()
         {

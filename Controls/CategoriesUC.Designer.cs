@@ -131,6 +131,7 @@
             this.dgvCategory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCategory.Size = new System.Drawing.Size(1111, 485);
             this.dgvCategory.TabIndex = 1;
+            this.dgvCategory.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvCategory_CellFormatting);
             // 
             // panel4
             // 
@@ -172,6 +173,7 @@
             this.btnCategoryPrev.Size = new System.Drawing.Size(41, 32);
             this.btnCategoryPrev.TabIndex = 0;
             this.btnCategoryPrev.UseVisualStyleBackColor = false;
+            this.btnCategoryPrev.Click += new System.EventHandler(this.btnCategoryPrev_Click);
             // 
             // btnCategoryNext
             // 
@@ -186,6 +188,7 @@
             this.btnCategoryNext.Size = new System.Drawing.Size(44, 32);
             this.btnCategoryNext.TabIndex = 1;
             this.btnCategoryNext.UseVisualStyleBackColor = false;
+            this.btnCategoryNext.Click += new System.EventHandler(this.btnCategoryNext_Click);
             // 
             // lblCurrentCategoryPage
             // 
@@ -271,6 +274,7 @@
             this.cbCategoryEntries.Name = "cbCategoryEntries";
             this.cbCategoryEntries.Size = new System.Drawing.Size(49, 23);
             this.cbCategoryEntries.TabIndex = 3;
+            this.cbCategoryEntries.SelectedIndexChanged += new System.EventHandler(this.cbCategoryEntries_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -320,6 +324,7 @@
             this.txtSearchCategory.Name = "txtSearchCategory";
             this.txtSearchCategory.Size = new System.Drawing.Size(181, 27);
             this.txtSearchCategory.TabIndex = 3;
+            this.txtSearchCategory.TextChanged += new System.EventHandler(this.txtSearchCategory_TextChanged);
             // 
             // panel6
             // 
@@ -383,6 +388,7 @@
             this.btnRefreshCategory.Size = new System.Drawing.Size(53, 42);
             this.btnRefreshCategory.TabIndex = 1;
             this.btnRefreshCategory.UseVisualStyleBackColor = false;
+            this.btnRefreshCategory.Click += new System.EventHandler(this.btnRefreshCategory_Click);
             // 
             // button4
             // 
@@ -396,6 +402,7 @@
             this.button4.Size = new System.Drawing.Size(53, 42);
             this.button4.TabIndex = 0;
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.btnAddCategory_Click);
             // 
             // CategoriesUC
             // 
@@ -406,6 +413,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "CategoriesUC";
             this.Size = new System.Drawing.Size(1111, 606);
+            this.Load += new System.EventHandler(this.CategoriesUC_Load);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).EndInit();

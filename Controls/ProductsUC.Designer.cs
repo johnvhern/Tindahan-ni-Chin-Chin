@@ -131,6 +131,7 @@
             this.dgvProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProduct.Size = new System.Drawing.Size(1102, 569);
             this.dgvProduct.TabIndex = 0;
+            this.dgvProduct.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvProduct_CellFormatting);
             // 
             // panel9
             // 
@@ -172,6 +173,7 @@
             this.btnProductPrev.Size = new System.Drawing.Size(41, 32);
             this.btnProductPrev.TabIndex = 0;
             this.btnProductPrev.UseVisualStyleBackColor = false;
+            this.btnProductPrev.Click += new System.EventHandler(this.btnProductPrev_Click);
             // 
             // btnProductNext
             // 
@@ -186,6 +188,7 @@
             this.btnProductNext.Size = new System.Drawing.Size(44, 32);
             this.btnProductNext.TabIndex = 1;
             this.btnProductNext.UseVisualStyleBackColor = false;
+            this.btnProductNext.Click += new System.EventHandler(this.btnProductNext_Click);
             // 
             // lblProductCurrentPage
             // 
@@ -271,6 +274,7 @@
             this.cbProductEntries.Name = "cbProductEntries";
             this.cbProductEntries.Size = new System.Drawing.Size(49, 23);
             this.cbProductEntries.TabIndex = 3;
+            this.cbProductEntries.SelectedIndexChanged += new System.EventHandler(this.cbProductEntries_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -320,6 +324,7 @@
             this.txtSearchProduct.Name = "txtSearchProduct";
             this.txtSearchProduct.Size = new System.Drawing.Size(181, 27);
             this.txtSearchProduct.TabIndex = 3;
+            this.txtSearchProduct.TextChanged += new System.EventHandler(this.txtSearchProduct_TextChanged);
             // 
             // panel16
             // 
@@ -383,6 +388,7 @@
             this.btnRefreshProduct.Size = new System.Drawing.Size(53, 42);
             this.btnRefreshProduct.TabIndex = 1;
             this.btnRefreshProduct.UseVisualStyleBackColor = false;
+            this.btnRefreshProduct.Click += new System.EventHandler(this.btnRefreshProduct_Click);
             // 
             // btnAddProduct
             // 
@@ -396,6 +402,7 @@
             this.btnAddProduct.Size = new System.Drawing.Size(53, 42);
             this.btnAddProduct.TabIndex = 0;
             this.btnAddProduct.UseVisualStyleBackColor = false;
+            this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
             // ProductsUC
             // 
@@ -406,6 +413,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ProductsUC";
             this.Size = new System.Drawing.Size(1102, 690);
+            this.Load += new System.EventHandler(this.ProductsUC_Load);
             this.panel7.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).EndInit();

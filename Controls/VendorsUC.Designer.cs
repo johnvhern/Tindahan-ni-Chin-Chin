@@ -131,6 +131,7 @@
             this.dgvVendor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvVendor.Size = new System.Drawing.Size(1080, 498);
             this.dgvVendor.TabIndex = 0;
+            this.dgvVendor.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvVendor_CellFormatting);
             // 
             // panel13
             // 

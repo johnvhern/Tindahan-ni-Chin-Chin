@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Tindahan_ni_Chin_Chin
@@ -18,6 +15,7 @@ namespace Tindahan_ni_Chin_Chin
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(licenseKey);
 
             Database.DatabaseCreation.InitializeDatabase();
+            //Database.DatabaseCreation.addProduct();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Forms.LoginForm());
