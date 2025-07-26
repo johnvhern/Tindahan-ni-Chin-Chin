@@ -160,7 +160,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
         {
             DataTable categoryTable = Database.DBCategory.getCategoryList().Result; // Fetch the category list asynchronously
 
-            string filterText = txtCategorySearch.Text.Trim().Replace("'", "''"); // Prevent SQL injection-like issues
+            string filterText = txtVendorSearch.Text.Trim().Replace("'", "''"); // Prevent SQL injection-like issues
 
             if (categoryTable != null)
             {
