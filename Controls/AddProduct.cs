@@ -9,9 +9,8 @@ namespace Tindahan_ni_Chin_Chin.Controls
 {
     public partial class AddProduct : UserControl
     {
-        public Action OnProductAdded; // callback to notify parent form
-        private string selectedCategoryId;
-        private string selectedCategoryName;
+        public Action OnProductAdded, OnVendorAdded; // callback to notify parent form
+        private string selectedCategoryId, selectedCategoryName, selectedVendorId, selectedVendorName;
 
         public AddProduct()
         {
@@ -38,6 +37,19 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
         private void txtProductVendor_Click(object sender, EventArgs e)
         {
+
+            var productVendor = new ProductVendorSelection();
+
+            productVendor.OnSelectedVendor += () => // Subscribe to the OnCategoryAdded event
+            {
+                txtProductVendor.Text = productVendor.selectedProductVendor; // Update the text box with the selected category name
+                selectedCategoryId = productVendor.selectedVendorId; // Store the selected category ID
+            };
+
+            Forms.LookupForm productVendorForm = new Forms.LookupForm();
+            productVendorForm.OpenControl(productVendor); // Open the AddCategory user control in the AddProduct form
+            productVendorForm.Text = "Select Vendor"; // Set the title of the AddForm
+            productVendorForm.ShowDialog(); // Show the AddCategory form as a dialog
 
         }
 

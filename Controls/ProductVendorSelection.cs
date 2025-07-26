@@ -9,8 +9,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
     public partial class ProductVendorSelection : UserControl
     {
         public Action OnSelectedVendor; // callback to notify parent form
-        public string selectedVendorId;
-        public string selectedProductVendor;
+        public string selectedVendorId, selectedProductVendor;
         public ProductVendorSelection()
         {
             InitializeComponent();
@@ -23,7 +22,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
         private async Task LoadVendorList()
         {
-            DataTable dataTable = await Database.DBCategory.getCategoryList();
+            DataTable dataTable = await Database.DBVendors.GetVendorListAsync();
             dgvProductVendor.DataSource = dataTable;
             DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
             buttonColumn.HeaderText = "Action";
@@ -106,7 +105,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
 
             try
             {
-                DialogResult result = MessageBoxAdv.Show(this, $"Are you sure you want to add this category?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBoxAdv.Show(this, $"Are you sure you want to add this vendor?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
@@ -131,6 +130,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
             catch (Exception ex)
             {
                 MessageBoxAdv.Show(this, "An error occurred while adding the product", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine("Error in ProductVendorSelection: " + ex.Message);
             }
 
         }
@@ -158,6 +158,7 @@ namespace Tindahan_ni_Chin_Chin.Controls
             catch (Exception ex)
             {
                 MessageBoxAdv.Show(this, "An error occurred while cancelling category selection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine("Error in ProductVendorSelection: " + ex.Message);
             }
 
         }
